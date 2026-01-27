@@ -1,0 +1,6 @@
+src/linkedin_game_solver/games/queens/solver_baseline.py
+src/linkedin_game_solver/games/queens/solver_heuristic.py
+src/linkedin_game_solver/games/queens/solvers.py
+src/linkedin_game_solver/benchmarks/queens.py
+src/linkedin_game_solver/cli.py
+tests/test_queens_solvers.py

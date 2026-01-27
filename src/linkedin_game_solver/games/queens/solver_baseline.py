@@ -116,7 +116,7 @@ def _next_row(state: _State) -> int | None:
     return None
 
 
-def solve_baseline(puzzle: QueensPuzzle) -> SolveResult:
+def solve_baseline(puzzle: QueensPuzzle, time_limit_s: float | None = None) -> SolveResult:
     """Solve a Queens puzzle with straightforward row-by-row backtracking.
 
     Intuition: place exactly one queen per row, checking constraints against the
@@ -127,6 +127,7 @@ def solve_baseline(puzzle: QueensPuzzle) -> SolveResult:
     timer = Timer()
     timer.start()
     metrics = SolveMetrics()
+    limit_ms = None if time_limit_s is None else max(0.0, time_limit_s * 1000.0)
 
     try:
         state, domains, givens_by_row = _initialize_state(puzzle)
@@ -139,7 +140,13 @@ def solve_baseline(puzzle: QueensPuzzle) -> SolveResult:
             error=f"Invalid puzzle givens: {exc}",
         )
 
-    def dfs() -> bool:
+    def timed_out() -> bool:
+        return limit_ms is not None and timer.elapsed_ms() >= limit_ms
+
+    def dfs() -> bool | None:
+        if timed_out():
+            return None
+
         row = _next_row(state)
         if row is None:
             return True
@@ -147,21 +154,31 @@ def solve_baseline(puzzle: QueensPuzzle) -> SolveResult:
         if row in givens_by_row:
             # Should already be placed during initialization, but guard anyway.
             col = givens_by_row[row]
+            if timed_out():
+                return None
             metrics.nodes += 1
             if _can_place(puzzle, state, row, col):
                 _place(puzzle, state, row, col)
-                if dfs():
+                result = dfs()
+                if result is None:
+                    return None
+                if result:
                     return True
                 _unplace(puzzle, state, row, col)
             metrics.backtracks += 1
             return False
 
         for col in sorted(domains[row]):
+            if timed_out():
+                return None
             metrics.nodes += 1
             if not _can_place(puzzle, state, row, col):
                 continue
             _place(puzzle, state, row, col)
-            if dfs():
+            result = dfs()
+            if result is None:
+                return None
+            if result:
                 return True
             _unplace(puzzle, state, row, col)
 
@@ -170,6 +187,14 @@ def solve_baseline(puzzle: QueensPuzzle) -> SolveResult:
 
     solved = dfs()
     metrics.time_ms = timer.elapsed_ms()
+
+    if solved is None:
+        return SolveResult(
+            solved=False,
+            solution=None,
+            metrics=metrics,
+            error="Timeout: solver exceeded the time limit.",
+        )
 
     if not solved:
         return SolveResult(

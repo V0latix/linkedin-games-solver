@@ -204,7 +204,7 @@ def _finalize_result(puzzle: QueensPuzzle, state: _State, metrics: SolveMetrics)
     return SolveResult(solved=True, solution=solution, metrics=metrics, error=None)
 
 
-def solve_heuristic_simple(puzzle: QueensPuzzle) -> SolveResult:
+def solve_heuristic_simple(puzzle: QueensPuzzle, time_limit_s: float | None = None) -> SolveResult:
     """MRV row selection with simple column ordering.
 
     Intuition: always pick the row with the fewest valid moves (MRV) to reduce
@@ -215,6 +215,7 @@ def solve_heuristic_simple(puzzle: QueensPuzzle) -> SolveResult:
     timer = Timer()
     timer.start()
     metrics = SolveMetrics()
+    limit_ms = None if time_limit_s is None else max(0.0, time_limit_s * 1000.0)
 
     try:
         state, domains, _givens_by_row = _initialize_state(puzzle)
@@ -227,7 +228,13 @@ def solve_heuristic_simple(puzzle: QueensPuzzle) -> SolveResult:
             error=f"Invalid puzzle givens: {exc}",
         )
 
-    def dfs() -> bool:
+    def timed_out() -> bool:
+        return limit_ms is not None and timer.elapsed_ms() >= limit_ms
+
+    def dfs() -> bool | None:
+        if timed_out():
+            return None
+
         row, allowed_by_row = _select_row_mrv(puzzle, state, domains)
         if row is None:
             return True
@@ -238,13 +245,18 @@ def solve_heuristic_simple(puzzle: QueensPuzzle) -> SolveResult:
             return False
 
         for col in _order_columns_simple(allowed):
+            if timed_out():
+                return None
             metrics.nodes += 1
             if not _can_place(puzzle, state, row, col):
                 continue
             if not _forward_check(puzzle, state, domains, row, col):
                 continue
             _place(puzzle, state, row, col)
-            if dfs():
+            result = dfs()
+            if result is None:
+                return None
+            if result:
                 return True
             _unplace(puzzle, state, row, col)
 
@@ -253,6 +265,14 @@ def solve_heuristic_simple(puzzle: QueensPuzzle) -> SolveResult:
 
     solved = dfs()
     metrics.time_ms = timer.elapsed_ms()
+
+    if solved is None:
+        return SolveResult(
+            solved=False,
+            solution=None,
+            metrics=metrics,
+            error="Timeout: solver exceeded the time limit.",
+        )
 
     if not solved:
         return SolveResult(
@@ -265,7 +285,7 @@ def solve_heuristic_simple(puzzle: QueensPuzzle) -> SolveResult:
     return _finalize_result(puzzle, state, metrics)
 
 
-def solve_heuristic_lcv(puzzle: QueensPuzzle) -> SolveResult:
+def solve_heuristic_lcv(puzzle: QueensPuzzle, time_limit_s: float | None = None) -> SolveResult:
     """MRV row selection with LCV ordering and forward checking.
 
     Intuition: combine MRV (hardest row first) with LCV (least constraining
@@ -275,6 +295,7 @@ def solve_heuristic_lcv(puzzle: QueensPuzzle) -> SolveResult:
     timer = Timer()
     timer.start()
     metrics = SolveMetrics()
+    limit_ms = None if time_limit_s is None else max(0.0, time_limit_s * 1000.0)
 
     try:
         state, domains, _givens_by_row = _initialize_state(puzzle)
@@ -287,7 +308,13 @@ def solve_heuristic_lcv(puzzle: QueensPuzzle) -> SolveResult:
             error=f"Invalid puzzle givens: {exc}",
         )
 
-    def dfs() -> bool:
+    def timed_out() -> bool:
+        return limit_ms is not None and timer.elapsed_ms() >= limit_ms
+
+    def dfs() -> bool | None:
+        if timed_out():
+            return None
+
         row, allowed_by_row = _select_row_mrv(puzzle, state, domains)
         if row is None:
             return True
@@ -298,13 +325,18 @@ def solve_heuristic_lcv(puzzle: QueensPuzzle) -> SolveResult:
             return False
 
         for col in _order_columns_lcv(puzzle, state, domains, row, allowed):
+            if timed_out():
+                return None
             metrics.nodes += 1
             if not _can_place(puzzle, state, row, col):
                 continue
             if not _forward_check(puzzle, state, domains, row, col):
                 continue
             _place(puzzle, state, row, col)
-            if dfs():
+            result = dfs()
+            if result is None:
+                return None
+            if result:
                 return True
             _unplace(puzzle, state, row, col)
 
@@ -313,6 +345,14 @@ def solve_heuristic_lcv(puzzle: QueensPuzzle) -> SolveResult:
 
     solved = dfs()
     metrics.time_ms = timer.elapsed_ms()
+
+    if solved is None:
+        return SolveResult(
+            solved=False,
+            solution=None,
+            metrics=metrics,
+            error="Timeout: solver exceeded the time limit.",
+        )
 
     if not solved:
         return SolveResult(

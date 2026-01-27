@@ -62,3 +62,11 @@ def test_invalid_givens_return_explicit_error() -> None:
     assert not result.solved
     assert result.error is not None
     assert "Invalid puzzle givens" in result.error
+
+
+def test_time_limit_triggers_timeout() -> None:
+    puzzle = parse_puzzle_file(Path("data/curated/queens/example_6x6.json"))
+    result = solve_baseline(puzzle, time_limit_s=0.0)
+    assert not result.solved
+    assert result.error is not None
+    assert "timeout" in result.error.lower()
