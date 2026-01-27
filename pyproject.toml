@@ -7,7 +7,7 @@ name = "linkedin-game-solver"
 version = "0.1.0"
 description = "Educational puzzle solver framework with a Queens implementation."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 authors = [{ name = "Romain" }]
 dependencies = []
 
@@ -32,3 +32,10 @@ ignore = ["E501"]
 quote-style = "double"
 indent-style = "space"
 line-ending = "lf"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["linkedin_game_solver*"]

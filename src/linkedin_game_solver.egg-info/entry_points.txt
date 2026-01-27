@@ -1,0 +1,2 @@
+[console_scripts]
+lgs = linkedin_game_solver.cli:main
