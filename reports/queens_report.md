@@ -1,20 +1,19 @@
 # Queens Data Science Report
 
 - Source: `data/benchmarks/queens_runs.jsonl`
-- Runs: 5538
-- Unique puzzles: 473
-- Algorithms: dlx, baseline, heuristic_lcv, csp_ac3, heuristic_simple, min_conflicts
+- Runs: 5585
+- Unique puzzles: 1117
+- Algorithms: dlx, baseline, csp_ac3, heuristic_lcv, min_conflicts
 
 ## Summary Table
 
-| algo             |   puzzles |   solved |   solved_rate |   avg_time_ms |   median_time_ms |   avg_nodes |   avg_backtracks |   timeout_rate |
-|:-----------------|----------:|---------:|--------------:|--------------:|-----------------:|------------:|-----------------:|---------------:|
-| dlx              |       923 |      923 |        100    |       1.33683 |         0.831958 |     35.8147 |          26.9502 |           0    |
-| baseline         |       923 |      898 |         97.29 |      12.7447  |         0.263041 |  34161.8    |        2981.37   |           2.71 |
-| heuristic_lcv    |       923 |      869 |         94.15 |      13.6538  |         1.25962  |    420.756  |         227.816  |           5.85 |
-| csp_ac3          |       923 |      881 |         95.45 |      14.9582  |         1.80933  |    100.59   |          91.9523 |           4.55 |
-| heuristic_simple |       923 |      877 |         95.02 |      18.6523  |         0.843875 |    875.184  |         493.41   |           4.98 |
-| min_conflicts    |       923 |      410 |         44.42 |     163.778   |       136.334    |   9609.8    |           1.9122 |          55.58 |
+| algo          |   puzzles |   solved |   solved_rate |   avg_time_ms |   median_time_ms |   avg_nodes |   avg_backtracks |   timeout_rate |
+|:--------------|----------:|---------:|--------------:|--------------:|-----------------:|------------:|-----------------:|---------------:|
+| dlx           |      1117 |     1117 |        100    |       1.49108 |         0.966375 |     41.2722 |         32.2193  |           0    |
+| baseline      |      1117 |     1100 |         98.48 |      29.9378  |         1.57271  |  80182.4    |       7011.98    |           1.52 |
+| csp_ac3       |      1117 |     1073 |         96.06 |      46.4859  |         3.07029  |    314.793  |        305.91    |           3.94 |
+| heuristic_lcv |      1117 |     1067 |         95.52 |      55.1845  |         3.82912  |   1603.68   |        873.1     |           4.48 |
+| min_conflicts |      1117 |      122 |         10.92 |     395.572   |       353.752    |  26667.7    |          5.32787 |          89.08 |
 
 ## Charts
 

@@ -11,16 +11,60 @@ from linkedin_game_solver.benchmarks.queens import available_algorithms, run_and
 from linkedin_game_solver.datasets.exporter import export_dataset
 from linkedin_game_solver.datasets.normalize import normalize_dataset
 from linkedin_game_solver.datasets.organize import organize_by_size
+from linkedin_game_solver.datasets.unique import annotate_manifest_in_place
 from linkedin_game_solver.games.queens.generator import generate_puzzle_payload
 from linkedin_game_solver.games.queens.importers.samimsu import import_samimsu_dataset
-from linkedin_game_solver.games.queens.parser import parse_puzzle_dict
-from linkedin_game_solver.games.queens.renderer import render_solution
+from linkedin_game_solver.games.queens.parser import parse_puzzle_dict, parse_puzzle_file
+from linkedin_game_solver.games.queens.renderer import render_puzzle, render_solution
 from linkedin_game_solver.games.queens.solvers import get_solver
 from linkedin_game_solver.games.queens.validator import validate_solution
 
 
 def _resolve_queens_solver(algo: str):
     return get_solver(algo)
+
+
+def _handle_solve(args: argparse.Namespace) -> int:
+    if args.game != "queens":
+        msg = "solve currently supports only --game queens."
+        raise ValueError(msg)
+
+    puzzle = parse_puzzle_file(args.input)
+    solver = _resolve_queens_solver(args.algo)
+    result = solver(puzzle, time_limit_s=args.timelimit)
+
+    if not result.solved or result.solution is None:
+        reason = result.error or "Solver failed without an explicit error."
+        print(f"Solver failed: {reason}")
+        return 2
+
+    validation = validate_solution(puzzle, result.solution)
+    if not validation.ok:
+        print(f"Solver produced an invalid solution: {validation.reason}")
+        return 3
+
+    print(
+        "metrics:",
+        f"time_ms={result.metrics.time_ms:.3f}",
+        f"nodes={result.metrics.nodes}",
+        f"backtracks={result.metrics.backtracks}",
+    )
+
+    if args.render:
+        print()
+        print(render_solution(puzzle, result.solution).text)
+
+    return 0
+
+
+def _handle_render(args: argparse.Namespace) -> int:
+    if args.game != "queens":
+        msg = "render currently supports only --game queens."
+        raise ValueError(msg)
+
+    puzzle = parse_puzzle_file(args.input)
+    print(render_puzzle(puzzle).text)
+    return 0
 
 
 def _handle_generate_solve(args: argparse.Namespace) -> int:
@@ -231,6 +275,22 @@ def _handle_normalize_dataset(args: argparse.Namespace) -> int:
     return 0
 
 
+def _handle_mark_unique(args: argparse.Namespace) -> int:
+    stats = annotate_manifest_in_place(
+        input_path=args.input,
+        max_check=args.limit,
+        time_limit_s=args.timelimit,
+    )
+    print(
+        "Annotated puzzle uniqueness:",
+        f"total={stats.total}",
+        f"unique={stats.unique}",
+        f"multiple={stats.non_unique}",
+        f"unknown={stats.unknown}",
+    )
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="lgs", description="LinkedIn puzzle solver (educational).")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -239,8 +299,20 @@ def build_parser() -> argparse.ArgumentParser:
     solve.add_argument("--game", required=True, help="Game name (e.g., queens).")
     solve.add_argument("--algo", required=True, help="Algorithm name.")
     solve.add_argument("--input", required=True, type=Path, help="Path to puzzle JSON.")
+    solve.add_argument(
+        "--timelimit",
+        type=float,
+        default=None,
+        help="Optional time limit in seconds.",
+    )
+    solve.add_argument(
+        "--render",
+        action="store_true",
+        help="Render the solved grid to the console.",
+    )
 
     render = subparsers.add_parser("render", help="Render a puzzle JSON.")
+    render.add_argument("--game", required=True, help="Game name (e.g., queens).")
     render.add_argument("--input", required=True, type=Path, help="Path to puzzle JSON.")
 
     bench = subparsers.add_parser("bench", help="Benchmark algorithms on a dataset.")
@@ -447,6 +519,29 @@ def build_parser() -> argparse.ArgumentParser:
         help="Output JSON file (default: in-place).",
     )
 
+    mark_unique_cmd = subparsers.add_parser(
+        "mark-unique",
+        help="Annotate puzzles with solution uniqueness (unique/multiple/unknown).",
+    )
+    mark_unique_cmd.add_argument(
+        "--input",
+        type=Path,
+        required=True,
+        help="Path to puzzles manifest JSON (in-place update).",
+    )
+    mark_unique_cmd.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Optional limit on puzzles to check.",
+    )
+    mark_unique_cmd.add_argument(
+        "--timelimit",
+        type=float,
+        default=None,
+        help="Optional time limit per puzzle in seconds.",
+    )
+
     return parser
 
 
@@ -458,9 +553,9 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "generate-solve":
             return _handle_generate_solve(args)
         if args.command == "solve":
-            parser.error("'solve' is not wired yet. Next step will implement it.")
+            return _handle_solve(args)
         if args.command == "render":
-            parser.error("'render' is not wired yet. Next step will implement it.")
+            return _handle_render(args)
         if args.command == "bench":
             return _handle_bench(args)
         if args.command == "generate-dataset":
@@ -473,6 +568,8 @@ def main(argv: list[str] | None = None) -> int:
             return _handle_export_dataset(args)
         if args.command == "normalize-dataset":
             return _handle_normalize_dataset(args)
+        if args.command == "mark-unique":
+            return _handle_mark_unique(args)
     except ValueError as exc:
         parser.error(str(exc))
 

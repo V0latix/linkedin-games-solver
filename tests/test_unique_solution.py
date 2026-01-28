@@ -1,0 +1,74 @@
+import json
+from pathlib import Path
+
+from linkedin_game_solver.datasets.unique import annotate_manifest_in_place
+from linkedin_game_solver.games.queens.parser import parse_puzzle_dict
+from linkedin_game_solver.games.queens.solver_dlx import count_solutions_dlx
+
+
+def _regions_by_row(n: int) -> list[list[int]]:
+    return [[r for _ in range(n)] for r in range(n)]
+
+
+def test_count_solutions_dlx_unique_with_full_givens():
+    payload = {
+        "game": "queens",
+        "n": 4,
+        "regions": _regions_by_row(4),
+        "givens": {
+            "queens": [[0, 1], [1, 3], [2, 0], [3, 2]],
+            "blocked": [],
+        },
+    }
+    puzzle = parse_puzzle_dict(payload)
+    count = count_solutions_dlx(puzzle, limit=2)
+    assert count == 1
+
+
+def test_count_solutions_dlx_multiple_without_givens():
+    payload = {
+        "game": "queens",
+        "n": 4,
+        "regions": _regions_by_row(4),
+        "givens": {"queens": [], "blocked": []},
+    }
+    puzzle = parse_puzzle_dict(payload)
+    count = count_solutions_dlx(puzzle, limit=2)
+    assert count == 2
+
+
+def test_annotate_manifest_in_place(tmp_path: Path):
+    manifest = {
+        "game": "queens",
+        "version": 1,
+        "puzzles": [
+            {
+                "id": 1,
+                "source": "test",
+                "n": 4,
+                "regions": _regions_by_row(4),
+                "givens": {
+                    "queens": [[0, 1], [1, 3], [2, 0], [3, 2]],
+                    "blocked": [],
+                },
+            },
+            {
+                "id": 2,
+                "source": "test",
+                "n": 4,
+                "regions": _regions_by_row(4),
+                "givens": {"queens": [], "blocked": []},
+            },
+        ],
+    }
+    path = tmp_path / "puzzles.json"
+    path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    stats = annotate_manifest_in_place(path)
+    assert stats.total == 2
+    assert stats.unique == 1
+    assert stats.non_unique == 1
+
+    updated = json.loads(path.read_text(encoding="utf-8"))
+    solutions = [p["solution"] for p in updated["puzzles"]]
+    assert solutions == ["unique", "multiple"]

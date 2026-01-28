@@ -40,3 +40,19 @@ def render_solution(puzzle: QueensPuzzle, solution: QueensSolution) -> Rendered:
     positions = solution.positions()
     pos_text = " ".join(f"({r},{c})" for r, c in positions)
     return Rendered(text=f"{header}\n\nsolution\n{body}\n\nqueens: {pos_text}")
+
+
+def render_puzzle(puzzle: QueensPuzzle) -> Rendered:
+    n = puzzle.n
+    grid = [["." for _ in range(n)] for _ in range(n)]
+
+    for r, c in puzzle.blocked:
+        grid[r][c] = "x"
+
+    for r, c in puzzle.givens_queens:
+        grid[r][c] = "Q"
+
+    header = render_regions(puzzle).text
+    body = _grid_to_text(grid)
+    positions = " ".join(f"({r},{c})" for r, c in sorted(puzzle.givens_queens))
+    return Rendered(text=f"{header}\n\ngivens\n{body}\n\nqueens: {positions}")

@@ -131,7 +131,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 2,
@@ -262,7 +263,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 3,
@@ -393,7 +395,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 4,
@@ -524,7 +527,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 5,
@@ -655,7 +659,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 6,
@@ -786,7 +791,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 7,
@@ -917,7 +923,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 8,
@@ -1048,7 +1055,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 9,
@@ -1179,7 +1187,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 10,
@@ -1310,7 +1319,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 11,
@@ -1441,7 +1451,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 12,
@@ -1572,7 +1583,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 13,
@@ -1703,7 +1715,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 14,
@@ -1834,7 +1847,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 15,
@@ -1965,7 +1979,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 16,
@@ -2096,7 +2111,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 17,
@@ -2227,7 +2243,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 18,
@@ -2358,7 +2375,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 19,
@@ -2489,7 +2507,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 20,
@@ -2620,7 +2639,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 21,
@@ -2751,7 +2771,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 22,
@@ -2882,7 +2903,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 23,
@@ -3013,7 +3035,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 24,
@@ -3144,7 +3167,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 25,
@@ -3275,7 +3299,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 26,
@@ -3406,7 +3431,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 27,
@@ -3537,7 +3563,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 28,
@@ -3668,7 +3695,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 29,
@@ -3799,7 +3827,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 30,
@@ -3930,7 +3959,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 31,
@@ -4061,7 +4091,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 32,
@@ -4192,7 +4223,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 33,
@@ -4323,7 +4355,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 34,
@@ -4454,7 +4487,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 35,
@@ -4585,7 +4619,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 36,
@@ -4716,7 +4751,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 37,
@@ -4847,7 +4883,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 38,
@@ -4978,7 +5015,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 39,
@@ -5109,7 +5147,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 40,
@@ -5240,7 +5279,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 41,
@@ -5371,7 +5411,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 42,
@@ -5502,7 +5543,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 43,
@@ -5633,7 +5675,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 44,
@@ -5764,7 +5807,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 45,
@@ -5895,7 +5939,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 46,
@@ -6026,7 +6071,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 47,
@@ -6157,7 +6203,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 48,
@@ -6288,7 +6335,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 49,
@@ -6419,7 +6467,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 50,
@@ -6550,7 +6599,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 51,
@@ -6681,7 +6731,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 52,
@@ -6812,7 +6863,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 53,
@@ -6943,7 +6995,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 54,
@@ -7074,7 +7127,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 55,
@@ -7205,7 +7259,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 56,
@@ -7336,7 +7391,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 57,
@@ -7467,7 +7523,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 58,
@@ -7598,7 +7655,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 59,
@@ -7729,7 +7787,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 60,
@@ -7860,7 +7919,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 61,
@@ -7991,7 +8051,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 62,
@@ -8122,7 +8183,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 63,
@@ -8253,7 +8315,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 64,
@@ -8384,7 +8447,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 65,
@@ -8515,7 +8579,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 66,
@@ -8646,7 +8711,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 67,
@@ -8777,7 +8843,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 68,
@@ -8908,7 +8975,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 69,
@@ -9039,7 +9107,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 70,
@@ -9170,7 +9239,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 71,
@@ -9324,7 +9394,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 72,
@@ -9478,7 +9549,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 73,
@@ -9632,7 +9704,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 74,
@@ -9786,7 +9859,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 75,
@@ -9940,7 +10014,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 76,
@@ -10094,7 +10169,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 77,
@@ -10248,7 +10324,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 78,
@@ -10402,7 +10479,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 79,
@@ -10556,7 +10634,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 80,
@@ -10710,7 +10789,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 81,
@@ -10864,7 +10944,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 82,
@@ -11018,7 +11099,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 83,
@@ -11172,7 +11254,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 84,
@@ -11326,7 +11409,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 85,
@@ -11480,7 +11564,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 86,
@@ -11634,7 +11719,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 87,
@@ -11788,7 +11874,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 88,
@@ -11942,7 +12029,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 89,
@@ -12096,7 +12184,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 90,
@@ -12250,7 +12339,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 91,
@@ -12404,7 +12494,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 92,
@@ -12558,7 +12649,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 93,
@@ -12712,7 +12804,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 94,
@@ -12866,7 +12959,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 95,
@@ -13020,7 +13114,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 96,
@@ -13174,7 +13269,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 97,
@@ -13328,7 +13424,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 98,
@@ -13482,7 +13579,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 99,
@@ -13636,7 +13734,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 100,
@@ -13790,7 +13889,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 101,
@@ -13944,7 +14044,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 102,
@@ -14098,7 +14199,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 103,
@@ -14252,7 +14354,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 104,
@@ -14406,7 +14509,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 105,
@@ -14560,7 +14664,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 106,
@@ -14714,7 +14819,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 107,
@@ -14868,7 +14974,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 108,
@@ -15022,7 +15129,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 109,
@@ -15176,7 +15284,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 110,
@@ -15330,7 +15439,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 111,
@@ -15484,7 +15594,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 112,
@@ -15638,7 +15749,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 113,
@@ -15792,7 +15904,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 114,
@@ -15946,7 +16059,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 115,
@@ -16100,7 +16214,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 116,
@@ -16254,7 +16369,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 117,
@@ -16408,7 +16524,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 118,
@@ -16562,7 +16679,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 119,
@@ -16716,7 +16834,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 120,
@@ -16870,7 +16989,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 121,
@@ -17049,7 +17169,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 122,
@@ -17228,7 +17349,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 123,
@@ -17407,7 +17529,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 124,
@@ -17586,7 +17709,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 125,
@@ -17765,7 +17889,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 126,
@@ -17944,7 +18069,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 127,
@@ -18123,7 +18249,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 128,
@@ -18302,7 +18429,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 129,
@@ -18481,7 +18609,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 130,
@@ -18660,7 +18789,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 131,
@@ -18839,7 +18969,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 132,
@@ -19018,7 +19149,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 133,
@@ -19197,7 +19329,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 134,
@@ -19376,7 +19509,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 135,
@@ -19555,7 +19689,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 136,
@@ -19734,7 +19869,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 137,
@@ -19913,7 +20049,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 138,
@@ -20092,7 +20229,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 139,
@@ -20271,7 +20409,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 140,
@@ -20450,7 +20589,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 141,
@@ -20629,7 +20769,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 142,
@@ -20808,7 +20949,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 143,
@@ -20987,7 +21129,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 144,
@@ -21166,7 +21309,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 145,
@@ -21345,7 +21489,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 146,
@@ -21524,7 +21669,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 147,
@@ -21703,7 +21849,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 148,
@@ -21882,7 +22029,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 149,
@@ -22061,7 +22209,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 150,
@@ -22240,7 +22389,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 151,
@@ -22419,7 +22569,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 152,
@@ -22598,7 +22749,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 153,
@@ -22777,7 +22929,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 154,
@@ -22956,7 +23109,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 155,
@@ -23135,7 +23289,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 156,
@@ -23314,7 +23469,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 157,
@@ -23493,7 +23649,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 158,
@@ -23672,7 +23829,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 159,
@@ -23851,7 +24009,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 160,
@@ -24030,7 +24189,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 161,
@@ -24209,7 +24369,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 162,
@@ -24388,7 +24549,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 163,
@@ -24567,7 +24729,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 164,
@@ -24746,7 +24909,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 165,
@@ -24925,7 +25089,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 166,
@@ -25104,7 +25269,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 167,
@@ -25283,7 +25449,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 168,
@@ -25462,7 +25629,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 169,
@@ -25641,7 +25809,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 170,
@@ -25820,7 +25989,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 171,
@@ -25879,7 +26049,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 172,
@@ -25938,7 +26109,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 173,
@@ -25997,7 +26169,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 174,
@@ -26056,7 +26229,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 175,
@@ -26115,7 +26289,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 176,
@@ -26174,7 +26349,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 177,
@@ -26233,7 +26409,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 178,
@@ -26292,7 +26469,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 179,
@@ -26351,7 +26529,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 180,
@@ -26410,7 +26589,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 181,
@@ -26469,7 +26649,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 182,
@@ -26528,7 +26709,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 183,
@@ -26587,7 +26769,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 184,
@@ -26646,7 +26829,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 185,
@@ -26705,7 +26889,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 186,
@@ -26764,7 +26949,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 187,
@@ -26823,7 +27009,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 188,
@@ -26882,7 +27069,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 189,
@@ -26941,7 +27129,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 190,
@@ -27000,7 +27189,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 191,
@@ -27059,7 +27249,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 192,
@@ -27118,7 +27309,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 193,
@@ -27177,7 +27369,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 194,
@@ -27236,7 +27429,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 195,
@@ -27295,7 +27489,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 196,
@@ -27354,7 +27549,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 197,
@@ -27413,7 +27609,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 198,
@@ -27472,7 +27669,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 199,
@@ -27531,7 +27729,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 200,
@@ -27590,7 +27789,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 201,
@@ -27649,7 +27849,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 202,
@@ -27708,7 +27909,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 203,
@@ -27767,7 +27969,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 204,
@@ -27826,7 +28029,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 205,
@@ -27885,7 +28089,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 206,
@@ -27944,7 +28149,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 207,
@@ -28003,7 +28209,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 208,
@@ -28062,7 +28269,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 209,
@@ -28121,7 +28329,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 210,
@@ -28180,7 +28389,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 211,
@@ -28239,7 +28449,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 212,
@@ -28298,7 +28509,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 213,
@@ -28357,7 +28569,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 214,
@@ -28416,7 +28629,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 215,
@@ -28475,7 +28689,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 216,
@@ -28534,7 +28749,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 217,
@@ -28593,7 +28809,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 218,
@@ -28652,7 +28869,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 219,
@@ -28711,7 +28929,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 220,
@@ -28770,7 +28989,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 221,
@@ -28829,7 +29049,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 222,
@@ -28888,7 +29109,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 223,
@@ -28947,7 +29169,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 224,
@@ -29006,7 +29229,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 225,
@@ -29065,7 +29289,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 226,
@@ -29124,7 +29349,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 227,
@@ -29183,7 +29409,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 228,
@@ -29242,7 +29469,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 229,
@@ -29301,7 +29529,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 230,
@@ -29360,7 +29589,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 231,
@@ -29419,7 +29649,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 232,
@@ -29478,7 +29709,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 233,
@@ -29537,7 +29769,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 234,
@@ -29596,7 +29829,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 235,
@@ -29655,7 +29889,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 236,
@@ -29714,7 +29949,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 237,
@@ -29773,7 +30009,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 238,
@@ -29832,7 +30069,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 239,
@@ -29891,7 +30129,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 240,
@@ -29950,7 +30189,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 241,
@@ -30024,7 +30264,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 242,
@@ -30098,7 +30339,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 243,
@@ -30172,7 +30414,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 244,
@@ -30246,7 +30489,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 245,
@@ -30320,7 +30564,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 246,
@@ -30394,7 +30639,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 247,
@@ -30468,7 +30714,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 248,
@@ -30542,7 +30789,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 249,
@@ -30616,7 +30864,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 250,
@@ -30690,7 +30939,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 251,
@@ -30764,7 +31014,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 252,
@@ -30838,7 +31089,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 253,
@@ -30912,7 +31164,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 254,
@@ -30986,7 +31239,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 255,
@@ -31060,7 +31314,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 256,
@@ -31134,7 +31389,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 257,
@@ -31208,7 +31464,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 258,
@@ -31282,7 +31539,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 259,
@@ -31356,7 +31614,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 260,
@@ -31430,7 +31689,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 261,
@@ -31504,7 +31764,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 262,
@@ -31578,7 +31839,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 263,
@@ -31652,7 +31914,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 264,
@@ -31726,7 +31989,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 265,
@@ -31800,7 +32064,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 266,
@@ -31874,7 +32139,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 267,
@@ -31948,7 +32214,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 268,
@@ -32022,7 +32289,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 269,
@@ -32096,7 +32364,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 270,
@@ -32170,7 +32439,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 271,
@@ -32244,7 +32514,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 272,
@@ -32318,7 +32589,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 273,
@@ -32392,7 +32664,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 274,
@@ -32466,7 +32739,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 275,
@@ -32540,7 +32814,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 276,
@@ -32614,7 +32889,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 277,
@@ -32688,7 +32964,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 278,
@@ -32762,7 +33039,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 279,
@@ -32836,7 +33114,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 280,
@@ -32910,7 +33189,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 281,
@@ -32984,7 +33264,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 282,
@@ -33058,7 +33339,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 283,
@@ -33132,7 +33414,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 284,
@@ -33206,7 +33489,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 285,
@@ -33280,7 +33564,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 286,
@@ -33354,7 +33639,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 287,
@@ -33428,7 +33714,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 288,
@@ -33502,7 +33789,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 289,
@@ -33576,7 +33864,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 290,
@@ -33650,7 +33939,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 291,
@@ -33724,7 +34014,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 292,
@@ -33798,7 +34089,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 293,
@@ -33872,7 +34164,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 294,
@@ -33946,7 +34239,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 295,
@@ -34020,7 +34314,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 296,
@@ -34094,7 +34389,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 297,
@@ -34168,7 +34464,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 298,
@@ -34242,7 +34539,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 299,
@@ -34316,7 +34614,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 300,
@@ -34390,7 +34689,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 301,
@@ -34464,7 +34764,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 302,
@@ -34538,7 +34839,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 303,
@@ -34612,7 +34914,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 304,
@@ -34686,7 +34989,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 305,
@@ -34760,7 +35064,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 306,
@@ -34834,7 +35139,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 307,
@@ -34908,7 +35214,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 308,
@@ -34982,7 +35289,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 309,
@@ -35056,7 +35364,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 310,
@@ -35130,7 +35439,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 311,
@@ -35221,7 +35531,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 312,
@@ -35312,7 +35623,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 313,
@@ -35403,7 +35715,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 314,
@@ -35494,7 +35807,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 315,
@@ -35585,7 +35899,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 316,
@@ -35676,7 +35991,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 317,
@@ -35767,7 +36083,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 318,
@@ -35858,7 +36175,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 319,
@@ -35949,7 +36267,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 320,
@@ -36040,7 +36359,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 321,
@@ -36131,7 +36451,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 322,
@@ -36222,7 +36543,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 323,
@@ -36313,7 +36635,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 324,
@@ -36404,7 +36727,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 325,
@@ -36495,7 +36819,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 326,
@@ -36586,7 +36911,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 327,
@@ -36677,7 +37003,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 328,
@@ -36768,7 +37095,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 329,
@@ -36859,7 +37187,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 330,
@@ -36950,7 +37279,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 331,
@@ -37041,7 +37371,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 332,
@@ -37132,7 +37463,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 333,
@@ -37223,7 +37555,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 334,
@@ -37314,7 +37647,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 335,
@@ -37405,7 +37739,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 336,
@@ -37496,7 +37831,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 337,
@@ -37587,7 +37923,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 338,
@@ -37678,7 +38015,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 339,
@@ -37769,7 +38107,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 340,
@@ -37860,7 +38199,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 341,
@@ -37951,7 +38291,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 342,
@@ -38042,7 +38383,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 343,
@@ -38133,7 +38475,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 344,
@@ -38224,7 +38567,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 345,
@@ -38315,7 +38659,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 346,
@@ -38406,7 +38751,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 347,
@@ -38497,7 +38843,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 348,
@@ -38588,7 +38935,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 349,
@@ -38679,7 +39027,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 350,
@@ -38770,7 +39119,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 351,
@@ -38861,7 +39211,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 352,
@@ -38952,7 +39303,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 353,
@@ -39043,7 +39395,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 354,
@@ -39134,7 +39487,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 355,
@@ -39225,7 +39579,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 356,
@@ -39316,7 +39671,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 357,
@@ -39407,7 +39763,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 358,
@@ -39498,7 +39855,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 359,
@@ -39589,7 +39947,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 360,
@@ -39680,7 +40039,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 361,
@@ -39771,7 +40131,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 362,
@@ -39862,7 +40223,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 363,
@@ -39953,7 +40315,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 364,
@@ -40044,7 +40407,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 365,
@@ -40135,7 +40499,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 366,
@@ -40226,7 +40591,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 367,
@@ -40317,7 +40683,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 368,
@@ -40408,7 +40775,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 369,
@@ -40499,7 +40867,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 370,
@@ -40590,7 +40959,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 371,
@@ -40681,7 +41051,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 372,
@@ -40772,7 +41143,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 373,
@@ -40863,7 +41235,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 374,
@@ -40954,7 +41327,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 375,
@@ -41045,7 +41419,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 376,
@@ -41136,7 +41511,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 377,
@@ -41227,7 +41603,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 378,
@@ -41318,7 +41695,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 379,
@@ -41409,7 +41787,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 380,
@@ -41500,7 +41879,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 381,
@@ -41610,7 +41990,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 382,
@@ -41720,7 +42101,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 383,
@@ -41830,7 +42212,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 384,
@@ -41940,7 +42323,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 385,
@@ -42050,7 +42434,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 386,
@@ -42160,7 +42545,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 387,
@@ -42270,7 +42656,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 388,
@@ -42380,7 +42767,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 389,
@@ -42490,7 +42878,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 390,
@@ -42600,7 +42989,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 391,
@@ -42710,7 +43100,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 392,
@@ -42820,7 +43211,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 393,
@@ -42930,7 +43322,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 394,
@@ -43040,7 +43433,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 395,
@@ -43150,7 +43544,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 396,
@@ -43260,7 +43655,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 397,
@@ -43370,7 +43766,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 398,
@@ -43480,7 +43877,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 399,
@@ -43590,7 +43988,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 400,
@@ -43700,7 +44099,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 401,
@@ -43810,7 +44210,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 402,
@@ -43920,7 +44321,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 403,
@@ -44030,7 +44432,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 404,
@@ -44140,7 +44543,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 405,
@@ -44250,7 +44654,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 406,
@@ -44360,7 +44765,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 407,
@@ -44470,7 +44876,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 408,
@@ -44580,7 +44987,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 409,
@@ -44690,7 +45098,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 410,
@@ -44800,7 +45209,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 411,
@@ -44910,7 +45320,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 412,
@@ -45020,7 +45431,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 413,
@@ -45130,7 +45542,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 414,
@@ -45240,7 +45653,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 415,
@@ -45350,7 +45764,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 416,
@@ -45460,7 +45875,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 417,
@@ -45570,7 +45986,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 418,
@@ -45680,7 +46097,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 419,
@@ -45790,7 +46208,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 420,
@@ -45900,7 +46319,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 421,
@@ -46010,7 +46430,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 422,
@@ -46120,7 +46541,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 423,
@@ -46230,7 +46652,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 424,
@@ -46340,7 +46763,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 425,
@@ -46450,7 +46874,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 426,
@@ -46560,7 +46985,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 427,
@@ -46670,7 +47096,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 428,
@@ -46780,7 +47207,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 429,
@@ -46890,7 +47318,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 430,
@@ -47000,7 +47429,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 431,
@@ -47110,7 +47540,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 432,
@@ -47220,7 +47651,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 433,
@@ -47330,7 +47762,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 434,
@@ -47440,7 +47873,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 435,
@@ -47550,7 +47984,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 436,
@@ -47660,7 +48095,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 437,
@@ -47770,7 +48206,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 438,
@@ -47880,7 +48317,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 439,
@@ -47990,7 +48428,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 440,
@@ -48100,7 +48539,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 441,
@@ -48210,7 +48650,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 442,
@@ -48320,7 +48761,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 443,
@@ -48430,7 +48872,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 444,
@@ -48540,7 +48983,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 445,
@@ -48650,7 +49094,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 446,
@@ -48760,7 +49205,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 447,
@@ -48870,7 +49316,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 448,
@@ -48980,7 +49427,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 449,
@@ -49090,7 +49538,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     },
     {
       "id": 450,
@@ -49200,7 +49649,8 @@
       "givens": {
         "queens": [],
         "blocked": []
-      }
+      },
+      "solution": "multiple"
     }
   ]
 }
