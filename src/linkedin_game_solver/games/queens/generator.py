@@ -7,7 +7,7 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 
 from .parser import Cell, Grid, QueensPuzzle, QueensSolution, parse_puzzle_dict
-from .solver_dlx import count_solutions_dlx
+from .solver_dlx import count_solutions_dlx, find_two_solutions_dlx
 from .solvers import get_solver
 from .validator import validate_solution
 
@@ -216,6 +216,94 @@ def _is_unique_payload(payload: dict, time_limit_s: float | None) -> bool:
     return count == 1
 
 
+def _region_cells(regions: Grid, region_id: int) -> list[Cell]:
+    cells: list[Cell] = []
+    for r, row in enumerate(regions):
+        for c, value in enumerate(row):
+            if value == region_id:
+                cells.append((r, c))
+    return cells
+
+
+def _is_region_connected(regions: Grid, region_id: int, seed: Cell) -> bool:
+    cells = _region_cells(regions, region_id)
+    if not cells:
+        return False
+    if seed not in cells:
+        return False
+    target = set(cells)
+    stack = [seed]
+    visited = {seed}
+    n = len(regions)
+    while stack:
+        r, c = stack.pop()
+        for nr, nc in _neighbors4(n, r, c):
+            if (nr, nc) in target and (nr, nc) not in visited:
+                visited.add((nr, nc))
+                stack.append((nr, nc))
+    return visited == target
+
+
+def _build_seed_map(regions: Grid, solution: QueensSolution) -> dict[int, Cell]:
+    seeds: dict[int, Cell] = {}
+    for r, c in solution.positions():
+        seeds[regions[r][c]] = (r, c)
+    return seeds
+
+
+def _try_repair_regions(
+    regions: Grid,
+    solution_a: list[Cell],
+    solution_b: list[Cell],
+    seeds: dict[int, Cell],
+) -> Grid | None:
+    n = len(regions)
+    pos_a = {regions[r][c]: (r, c) for r, c in solution_a}
+    pos_b = {regions[r][c]: (r, c) for r, c in solution_b}
+
+    differing_regions = [rid for rid in pos_a if pos_a.get(rid) != pos_b.get(rid)]
+    random.shuffle(differing_regions)
+
+    for region_id in differing_regions:
+        b_cell = pos_b.get(region_id)
+        if b_cell is None:
+            continue
+        if seeds.get(region_id) == b_cell:
+            continue
+
+        br, bc = b_cell
+        neighbor_regions = {regions[nr][nc] for nr, nc in _neighbors4(n, br, bc) if regions[nr][nc] != region_id}
+        if not neighbor_regions:
+            continue
+
+        # Prefer moving into a region that already has a queen in solution_b.
+        neighbor_regions = sorted(
+            neighbor_regions,
+            key=lambda rid: 0 if rid in pos_b and pos_b[rid] != b_cell else 1,
+        )
+
+        for target_region in neighbor_regions:
+            if seeds.get(target_region) == b_cell:
+                continue
+
+            new_regions = [row[:] for row in regions]
+            new_regions[br][bc] = target_region
+
+            seed_a = seeds.get(region_id)
+            seed_b = seeds.get(target_region)
+            if seed_a is None or seed_b is None:
+                continue
+
+            if not _is_region_connected(new_regions, region_id, seed_a):
+                continue
+            if not _is_region_connected(new_regions, target_region, seed_b):
+                continue
+
+            return new_regions
+
+    return None
+
+
 def generate_puzzle_payload(
     n: int,
     seed: int | None = None,
@@ -230,6 +318,7 @@ def generate_puzzle_payload(
     progress_every: int | None = None,
     fast_unique: bool = False,
     fast_unique_timelimit_s: float = 0.5,
+    repair_steps: int = 0,
 ) -> tuple[dict, QueensSolution]:
     """Generate a puzzle JSON payload plus its known-valid solution.
 
@@ -275,6 +364,21 @@ def generate_puzzle_payload(
                     if fast_unique and not _is_unique_payload(payload, fast_unique_timelimit_s):
                         continue
                     if not _is_unique_payload(payload, time_limit_s):
+                        if repair_steps > 0:
+                            puzzle = parse_puzzle_dict(payload)
+                            solutions = find_two_solutions_dlx(puzzle, time_limit_s=time_limit_s)
+                            if len(solutions) >= 2:
+                                seeds = _build_seed_map(payload["regions"], solution)
+                                for _ in range(repair_steps):
+                                    repaired = _try_repair_regions(
+                                        payload["regions"], solutions[0], solutions[1], seeds
+                                    )
+                                    if repaired is None:
+                                        break
+                                    payload["regions"] = repaired
+                                    if _is_unique_payload(payload, time_limit_s):
+                                        return payload, solution
+                            continue
                         continue
 
                 puzzle = parse_puzzle_dict(payload)
@@ -310,6 +414,19 @@ def generate_puzzle_payload(
             if fast_unique and not _is_unique_payload(payload, fast_unique_timelimit_s):
                 continue
             if not _is_unique_payload(payload, time_limit_s):
+                if repair_steps > 0:
+                    puzzle = parse_puzzle_dict(payload)
+                    solutions = find_two_solutions_dlx(puzzle, time_limit_s=time_limit_s)
+                    if len(solutions) >= 2:
+                        seeds = _build_seed_map(payload["regions"], solution)
+                        for _ in range(repair_steps):
+                            repaired = _try_repair_regions(payload["regions"], solutions[0], solutions[1], seeds)
+                            if repaired is None:
+                                break
+                            payload["regions"] = repaired
+                            if _is_unique_payload(payload, time_limit_s):
+                                return payload, solution
+                    continue
                 continue
             return payload, solution
         return payload, solution

@@ -308,6 +308,114 @@ def count_solutions_dlx(
     return min(count, limit)
 
 
+def find_two_solutions_dlx(
+    puzzle: QueensPuzzle,
+    time_limit_s: float | None = None,
+) -> list[list[Cell]]:
+    """Return up to two distinct solutions (each as list of cells)."""
+
+    timer = Timer()
+    timer.start()
+    limit_ms = None if time_limit_s is None else max(0.0, time_limit_s * 1000.0)
+
+    givens_error = _validate_givens(puzzle)
+    if givens_error:
+        return []
+
+    candidates = [(r, c) for r in range(puzzle.n) for c in range(puzzle.n) if (r, c) not in puzzle.blocked]
+    dlx = _DLX()
+
+    for r in range(puzzle.n):
+        dlx.add_column(f"row_{r}", primary=True)
+    for c in range(puzzle.n):
+        dlx.add_column(f"col_{c}", primary=True)
+    for region_id in sorted(puzzle.region_ids):
+        dlx.add_column(f"region_{region_id}", primary=True)
+
+    adjacency_by_cell, adjacency_columns = _build_adjacency_columns(puzzle, candidates)
+    for name in adjacency_columns:
+        dlx.add_column(name, primary=False)
+
+    row_nodes: dict[Cell, _DLXNode] = {}
+    for r, c in candidates:
+        region_id = puzzle.regions[r][c]
+        columns = [f"row_{r}", f"col_{c}", f"region_{region_id}"] + adjacency_by_cell[(r, c)]
+        row_nodes[(r, c)] = dlx.add_row((r, c), columns)
+
+    def timed_out() -> bool:
+        return limit_ms is not None and timer.elapsed_ms() >= limit_ms
+
+    def cover_row(row: _DLXNode) -> None:
+        node = row
+        while True:
+            dlx.cover(node.column)
+            node = node.right
+            if node == row:
+                break
+
+    for given in sorted(puzzle.givens_queens):
+        row = row_nodes.get(given)
+        if row is None:
+            return []
+        cover_row(row)
+
+    def choose_column() -> _ColumnNode | None:
+        col = dlx.root.right
+        if col == dlx.root:
+            return None
+        best = col
+        col = col.right
+        while col != dlx.root:
+            if col.size < best.size:
+                best = col
+            col = col.right
+        return best
+
+    solutions: list[list[Cell]] = []
+    solution_nodes: list[_DLXNode] = []
+
+    def search() -> bool:
+        if timed_out():
+            return False
+        column = choose_column()
+        if column is None:
+            positions = [node.row_id for node in solution_nodes if node.row_id is not None]
+            solutions.append(list(positions))
+            return len(solutions) < 2
+        if column.size == 0:
+            return True
+
+        dlx.cover(column)
+        row = column.down
+        while row != column:
+            if timed_out():
+                dlx.uncover(column)
+                return False
+            solution_nodes.append(row)
+            node = row.right
+            while node != row:
+                dlx.cover(node.column)
+                node = node.right
+
+            should_continue = search()
+            if not should_continue:
+                dlx.uncover(column)
+                return False
+
+            node = row.left
+            while node != row:
+                dlx.uncover(node.column)
+                node = node.left
+            solution_nodes.pop()
+            row = row.down
+
+        dlx.uncover(column)
+        return True
+
+    search()
+    return solutions
+
+
 def solve_dlx(puzzle: QueensPuzzle, time_limit_s: float | None = None) -> SolveResult:
     """Solve Queens using Algorithm X with Dancing Links (DLX).
 

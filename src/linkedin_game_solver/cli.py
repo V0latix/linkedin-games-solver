@@ -92,6 +92,7 @@ def _handle_generate_solve(args: argparse.Namespace) -> int:
         progress_every=args.progress_every,
         fast_unique=args.fast_unique,
         fast_unique_timelimit_s=args.fast_unique_timelimit,
+        repair_steps=args.repair_steps,
     )
     puzzle = parse_puzzle_dict(payload)
     result = solver(puzzle)
@@ -219,6 +220,7 @@ def _handle_generate_dataset(args: argparse.Namespace) -> int:
                     progress_every=args.progress_every,
                     fast_unique=args.fast_unique,
                     fast_unique_timelimit_s=args.fast_unique_timelimit,
+                    repair_steps=args.repair_steps,
                 )
                 puzzle = parse_puzzle_dict(payload)
                 result = solver(puzzle)
@@ -491,6 +493,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Time limit in seconds for fast uniqueness pre-check (default: 0.5).",
     )
     generate_solve.add_argument(
+        "--repair-steps",
+        type=int,
+        default=0,
+        help="Attempts to locally repair regions when non-unique (default: 0).",
+    )
+    generate_solve.add_argument(
         "--outdir",
         type=Path,
         default=Path("data/generated/queens"),
@@ -590,6 +598,12 @@ def build_parser() -> argparse.ArgumentParser:
         type=float,
         default=0.5,
         help="Time limit in seconds for fast uniqueness pre-check (default: 0.5).",
+    )
+    generate_dataset.add_argument(
+        "--repair-steps",
+        type=int,
+        default=0,
+        help="Attempts to locally repair regions when non-unique (default: 0).",
     )
 
     import_samimsu = subparsers.add_parser(
