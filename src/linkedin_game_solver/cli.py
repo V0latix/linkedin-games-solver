@@ -432,7 +432,7 @@ def build_parser() -> argparse.ArgumentParser:
     generate_solve.add_argument("--n", required=True, type=int, help="Grid size (n x n).")
     generate_solve.add_argument(
         "--algo",
-        default="heuristic_lcv",
+        default="dlx",
         help="Solver to use (queens): " + ", ".join(available_algorithms()) + ".",
     )
     generate_solve.add_argument("--seed", type=int, default=None, help="Random seed for reproducibility.")

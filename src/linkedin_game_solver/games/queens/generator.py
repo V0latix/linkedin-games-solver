@@ -341,6 +341,9 @@ def generate_puzzle_payload(
         msg = f"unknown region_mode={region_mode!r}"
         raise ValueError(msg)
 
+    repair_attempts = 0
+    repair_successes = 0
+
     if selection_mode == "best":
         solver = get_solver(score_algo)
         best_score = -1.0
@@ -357,7 +360,8 @@ def generate_puzzle_payload(
                 if progress_every and attempts % progress_every == 0:
                     print(
                         f"[generator] tried {attempts} candidates "
-                        f"(mode=best, region={region_mode}, unique={ensure_unique})"
+                        f"(mode=best, region={region_mode}, unique={ensure_unique}) "
+                        f"repairs={repair_attempts} repaired={repair_successes}"
                     )
 
                 if ensure_unique:
@@ -370,6 +374,7 @@ def generate_puzzle_payload(
                             if len(solutions) >= 2:
                                 seeds = _build_seed_map(payload["regions"], solution)
                                 for _ in range(repair_steps):
+                                    repair_attempts += 1
                                     repaired = _try_repair_regions(
                                         payload["regions"], solutions[0], solutions[1], seeds
                                     )
@@ -377,6 +382,7 @@ def generate_puzzle_payload(
                                         break
                                     payload["regions"] = repaired
                                     if _is_unique_payload(payload, time_limit_s):
+                                        repair_successes += 1
                                         return payload, solution
                             continue
                         continue
@@ -408,7 +414,8 @@ def generate_puzzle_payload(
         if progress_every and attempt % progress_every == 0:
             print(
                 f"[generator] tried {attempt} candidates "
-                f"(mode=first, region={region_mode}, unique={ensure_unique})"
+                f"(mode=first, region={region_mode}, unique={ensure_unique}) "
+                f"repairs={repair_attempts} repaired={repair_successes}"
             )
         if ensure_unique:
             if fast_unique and not _is_unique_payload(payload, fast_unique_timelimit_s):
@@ -420,11 +427,13 @@ def generate_puzzle_payload(
                     if len(solutions) >= 2:
                         seeds = _build_seed_map(payload["regions"], solution)
                         for _ in range(repair_steps):
+                            repair_attempts += 1
                             repaired = _try_repair_regions(payload["regions"], solutions[0], solutions[1], seeds)
                             if repaired is None:
                                 break
                             payload["regions"] = repaired
                             if _is_unique_payload(payload, time_limit_s):
+                                repair_successes += 1
                                 return payload, solution
                     continue
                 continue
