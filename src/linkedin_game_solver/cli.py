@@ -24,6 +24,114 @@ def _resolve_queens_solver(algo: str):
     return get_solver(algo)
 
 
+def _profile_defaults(mode: str) -> dict[str, object]:
+    if mode == "solve":
+        return {
+            "region_mode": "mixed",
+            "selection": "best",
+            "candidates": 30,
+            "fast_unique": False,
+            "fast_unique_timelimit": 0.5,
+            "repair_steps": 0,
+            "block_steps": 0,
+            "search_until_unique": False,
+            "progress_every": 500,
+            "allow_multiple": False,
+            "global_timeout": None,
+        }
+    return {
+        "region_mode": "mixed",
+        "selection": "first",
+        "candidates": 20,
+        "fast_unique": False,
+        "fast_unique_timelimit": 0.5,
+        "repair_steps": 0,
+        "block_steps": 0,
+        "search_until_unique": False,
+        "progress_every": 500,
+        "allow_multiple": False,
+        "global_timeout": None,
+    }
+
+
+def _print_profiles() -> None:
+    print("Profiles:")
+    print("  fast:")
+    print("    - region_mode: mixed")
+    print("    - selection: first")
+    print("    - candidates: 100")
+    print("    - fast_unique: true (0.2s)")
+    print("    - search_until_unique: false")
+    print("  unique:")
+    print("    - region_mode: constrained")
+    print("    - selection: best")
+    print("    - candidates: 300")
+    print("    - fast_unique: false")
+    print("    - repair_steps: 30")
+    print("    - block_steps: 5")
+    print("    - search_until_unique: true")
+    print("  strict:")
+    print("    - region_mode: constrained")
+    print("    - selection: best")
+    print("    - candidates: 500")
+    print("    - fast_unique: false")
+    print("    - repair_steps: 50")
+    print("    - block_steps: 10")
+    print("    - search_until_unique: true")
+
+
+def _apply_profile(args: argparse.Namespace, mode: str) -> None:
+    base = _profile_defaults(mode)
+    profile = args.profile
+    if profile == "doc":
+        _print_profiles()
+        raise SystemExit(0)
+    if profile == "fast":
+        base.update(
+            {
+                "selection": "first",
+                "candidates": 100,
+                "fast_unique": True,
+                "fast_unique_timelimit": 0.2,
+                "repair_steps": 0,
+                "block_steps": 0,
+                "search_until_unique": False,
+                "progress_every": 200,
+            }
+        )
+    elif profile == "unique":
+        base.update(
+            {
+                "region_mode": "constrained",
+                "selection": "best",
+                "candidates": 300,
+                "fast_unique": False,
+                "fast_unique_timelimit": 0.5,
+                "repair_steps": 30,
+                "block_steps": 5,
+                "search_until_unique": True,
+                "progress_every": 200,
+            }
+        )
+    elif profile == "strict":
+        base.update(
+            {
+                "region_mode": "constrained",
+                "selection": "best",
+                "candidates": 500,
+                "fast_unique": False,
+                "repair_steps": 50,
+                "block_steps": 10,
+                "search_until_unique": True,
+                "progress_every": 200,
+            }
+        )
+
+    for key, value in base.items():
+        if getattr(args, key, None) is None:
+            setattr(args, key, value)
+
+
 def _handle_solve(args: argparse.Namespace) -> int:
     if args.game != "queens":
         msg = "solve currently supports only --game queens."
@@ -52,6 +160,8 @@ def _handle_solve(args: argparse.Namespace) -> int:
 
     if args.render:
         print()
+        print(render_puzzle(puzzle).text)
+        print()
         print(render_solution(puzzle, result.solution).text)
 
     return 0
@@ -72,6 +182,7 @@ def _handle_generate_solve(args: argparse.Namespace) -> int:
         msg = "generate-solve currently supports only --game queens."
         raise ValueError(msg)
 
+    _apply_profile(args, "solve")
     solver = _resolve_queens_solver(args.algo)
     max_attempts = args.max_attempts
     if not args.search_until_unique:
@@ -93,6 +204,8 @@ def _handle_generate_solve(args: argparse.Namespace) -> int:
         fast_unique=args.fast_unique,
         fast_unique_timelimit_s=args.fast_unique_timelimit,
         repair_steps=args.repair_steps,
+        block_steps=args.block_steps,
+        global_time_limit_s=args.global_timeout,
     )
     puzzle = parse_puzzle_dict(payload)
     result = solver(puzzle)
@@ -188,6 +301,7 @@ def _handle_generate_dataset(args: argparse.Namespace) -> int:
         msg = "generate-dataset currently supports only --game queens."
         raise ValueError(msg)
 
+    _apply_profile(args, "dataset")
     solver = _resolve_queens_solver(args.algo)
     sizes = _parse_sizes(args.sizes)
     max_attempts = args.max_attempts
@@ -221,6 +335,8 @@ def _handle_generate_dataset(args: argparse.Namespace) -> int:
                     fast_unique=args.fast_unique,
                     fast_unique_timelimit_s=args.fast_unique_timelimit,
                     repair_steps=args.repair_steps,
+                    block_steps=args.block_steps,
+                    global_time_limit_s=args.global_timeout,
                 )
                 puzzle = parse_puzzle_dict(payload)
                 result = solver(puzzle)
@@ -428,83 +544,113 @@ def build_parser() -> argparse.ArgumentParser:
         "generate-solve",
         help="Generate a puzzle, solve it, and save it if solvable.",
     )
-    generate_solve.add_argument("--game", default="queens", help="Game name (only queens supported).")
-    generate_solve.add_argument("--n", required=True, type=int, help="Grid size (n x n).")
-    generate_solve.add_argument(
+    solve_core = generate_solve.add_argument_group("Core")
+    solve_core.add_argument("--game", default="queens", help="Game name (only queens supported).")
+    solve_core.add_argument("--n", required=True, type=int, help="Grid size (n x n).")
+    solve_core.add_argument(
         "--algo",
         default="dlx",
-        help="Solver to use (queens): " + ", ".join(available_algorithms()) + ".",
+        help="Solver to verify: " + ", ".join(available_algorithms()) + ".",
     )
-    generate_solve.add_argument("--seed", type=int, default=None, help="Random seed for reproducibility.")
-    generate_solve.add_argument(
+    solve_core.add_argument("--seed", type=int, default=None, help="Random seed for reproducibility.")
+
+    solve_profile = generate_solve.add_argument_group("Profile")
+    solve_profile.add_argument(
+        "--profile",
+        choices=["fast", "unique", "strict", "doc"],
+        default=None,
+        help="Preset configuration (overrides defaults unless you set a flag explicitly).",
+    )
+
+    solve_gen = generate_solve.add_argument_group("Generation")
+    solve_gen.add_argument(
         "--max-attempts",
         type=int,
         default=None,
-        help="Max attempts to generate a unique puzzle (default: 50, ignored with --search-until-unique).",
+        help="Max attempts to generate a unique puzzle (ignored with --search-until-unique).",
     )
-    generate_solve.add_argument(
+    solve_gen.add_argument(
+        "--global-timeout",
+        type=float,
+        default=None,
+        help="Stop generation after this many seconds and return the best candidate seen.",
+    )
+    solve_gen.add_argument(
         "--region-mode",
         choices=["balanced", "biased", "serpentine", "constrained", "constrainde", "mixed"],
-        default="mixed",
-        help="Region generation style (default: mixed).",
+        default=None,
+        help="Region generation style.",
     )
-    generate_solve.add_argument(
+    solve_gen.add_argument(
         "--selection",
         choices=["first", "best"],
-        default="best",
-        help="Select first valid puzzle or keep best-scoring (default: best).",
+        default=None,
+        help="Select first valid puzzle or keep best-scoring.",
     )
-    generate_solve.add_argument(
+    solve_gen.add_argument(
         "--candidates",
         type=int,
-        default=30,
-        help="Number of candidates to score when using --selection best.",
+        default=None,
+        help="Number of candidates to score with --selection best.",
     )
-    generate_solve.add_argument(
+    solve_gen.add_argument(
         "--score-algo",
         default="heuristic_lcv",
-        help="Algorithm used to score difficulty (default: heuristic_lcv).",
+        help="Algorithm used to score difficulty.",
     )
-    generate_solve.add_argument(
+
+    solve_unique = generate_solve.add_argument_group("Uniqueness")
+    solve_unique.add_argument(
         "--allow-multiple",
         action="store_true",
+        default=None,
         help="Allow puzzles with multiple solutions (disables uniqueness check).",
     )
-    generate_solve.add_argument(
+    solve_unique.add_argument(
         "--search-until-unique",
         action="store_true",
-        help="Keep searching until a unique puzzle is found (no hard cap unless --max-attempts is set).",
+        default=None,
+        help="Keep searching until a unique puzzle is found.",
     )
-    generate_solve.add_argument(
-        "--progress-every",
-        type=int,
-        default=500,
-        help="Print a progress line every N candidates (default: 500).",
-    )
-    generate_solve.add_argument(
+    solve_unique.add_argument(
         "--fast-unique",
         action="store_true",
-        help="Use a fast uniqueness pre-check (DLX with short time limit).",
+        default=None,
+        help="Use a fast DLX pre-check to reject obvious non-unique puzzles.",
     )
-    generate_solve.add_argument(
+    solve_unique.add_argument(
         "--fast-unique-timelimit",
         type=float,
-        default=0.5,
-        help="Time limit in seconds for fast uniqueness pre-check (default: 0.5).",
+        default=None,
+        help="Time limit in seconds for fast uniqueness pre-check.",
     )
-    generate_solve.add_argument(
+    solve_unique.add_argument(
         "--repair-steps",
         type=int,
-        default=0,
-        help="Attempts to locally repair regions when non-unique (default: 0).",
+        default=None,
+        help="Attempts to locally repair regions when non-unique.",
     )
-    generate_solve.add_argument(
+    solve_unique.add_argument(
+        "--block-steps",
+        type=int,
+        default=None,
+        help="Attempts to add blocked cells to eliminate alternative solutions.",
+    )
+
+    solve_debug = generate_solve.add_argument_group("Output")
+    solve_debug.add_argument(
+        "--progress-every",
+        type=int,
+        default=None,
+        help="Print a progress line every N candidates.",
+    )
+    solve_debug.add_argument(
         "--outdir",
         type=Path,
         default=Path("data/generated/queens"),
         help="Directory to write generated puzzles.",
     )
-    generate_solve.add_argument(
+    solve_debug.add_argument(
         "--render",
         action="store_true",
         help="Render the solved grid to the console.",
@@ -514,96 +660,126 @@ def build_parser() -> argparse.ArgumentParser:
         "generate-dataset",
         help="Generate many solvable puzzles across multiple sizes.",
     )
-    generate_dataset.add_argument("--game", default="queens", help="Game name (only queens supported).")
-    generate_dataset.add_argument(
+    dataset_core = generate_dataset.add_argument_group("Core")
+    dataset_core.add_argument("--game", default="queens", help="Game name (only queens supported).")
+    dataset_core.add_argument(
         "--sizes",
         required=True,
         help="Comma-separated list of sizes, e.g., 6,7,8.",
     )
-    generate_dataset.add_argument(
+    dataset_core.add_argument(
         "--count",
         required=True,
         type=int,
         help="Number of puzzles to generate per size.",
     )
-    generate_dataset.add_argument(
+    dataset_core.add_argument(
         "--seed",
         type=int,
         default=None,
         help="Optional base seed for reproducible generation.",
     )
-    generate_dataset.add_argument(
+    dataset_core.add_argument(
         "--algo",
         default="heuristic_lcv",
         help="Solver to validate puzzles: " + ", ".join(available_algorithms()) + ".",
     )
-    generate_dataset.add_argument(
+    dataset_core.add_argument(
         "--outdir",
         type=Path,
         default=Path("data/generated/queens"),
         help="Base directory to write generated datasets.",
     )
-    generate_dataset.add_argument(
+
+    dataset_profile = generate_dataset.add_argument_group("Profile")
+    dataset_profile.add_argument(
+        "--profile",
+        choices=["fast", "unique", "strict", "doc"],
+        default=None,
+        help="Preset configuration (overrides defaults unless you set a flag explicitly).",
+    )
+
+    dataset_gen = generate_dataset.add_argument_group("Generation")
+    dataset_gen.add_argument(
         "--max-attempts",
         type=int,
         default=None,
-        help="Maximum generation attempts per puzzle (default: count * 10, ignored with --search-until-unique).",
+        help="Maximum generation attempts per puzzle (ignored with --search-until-unique).",
     )
-    generate_dataset.add_argument(
+    dataset_gen.add_argument(
+        "--global-timeout",
+        type=float,
+        default=None,
+        help="Stop generation after this many seconds and return the best candidate seen.",
+    )
+    dataset_gen.add_argument(
         "--region-mode",
         choices=["balanced", "biased", "serpentine", "constrained", "constrainde", "mixed"],
-        default="mixed",
-        help="Region generation style (default: mixed).",
+        default=None,
+        help="Region generation style.",
     )
-    generate_dataset.add_argument(
+    dataset_gen.add_argument(
         "--selection",
         choices=["first", "best"],
-        default="first",
-        help="Select first valid puzzle or keep best-scoring (default: first).",
+        default=None,
+        help="Select first valid puzzle or keep best-scoring.",
     )
-    generate_dataset.add_argument(
+    dataset_gen.add_argument(
         "--candidates",
         type=int,
-        default=20,
-        help="Number of candidates to score when using --selection best.",
+        default=None,
+        help="Number of candidates to score with --selection best.",
     )
-    generate_dataset.add_argument(
+    dataset_gen.add_argument(
         "--score-algo",
         default="heuristic_lcv",
-        help="Algorithm used to score difficulty (default: heuristic_lcv).",
+        help="Algorithm used to score difficulty.",
     )
-    generate_dataset.add_argument(
+
+    dataset_unique = generate_dataset.add_argument_group("Uniqueness")
+    dataset_unique.add_argument(
         "--allow-multiple",
         action="store_true",
+        default=None,
         help="Allow puzzles with multiple solutions (disables uniqueness check).",
     )
-    generate_dataset.add_argument(
+    dataset_unique.add_argument(
         "--search-until-unique",
         action="store_true",
-        help="Keep searching until a unique puzzle is found (no hard cap unless --max-attempts is set).",
+        default=None,
+        help="Keep searching until a unique puzzle is found.",
     )
-    generate_dataset.add_argument(
-        "--progress-every",
-        type=int,
-        default=500,
-        help="Print a progress line every N candidates (default: 500).",
-    )
-    generate_dataset.add_argument(
+    dataset_unique.add_argument(
         "--fast-unique",
         action="store_true",
-        help="Use a fast uniqueness pre-check (DLX with short time limit).",
+        default=None,
+        help="Use a fast DLX pre-check to reject obvious non-unique puzzles.",
     )
-    generate_dataset.add_argument(
+    dataset_unique.add_argument(
         "--fast-unique-timelimit",
         type=float,
-        default=0.5,
-        help="Time limit in seconds for fast uniqueness pre-check (default: 0.5).",
+        default=None,
+        help="Time limit in seconds for fast uniqueness pre-check.",
     )
-    generate_dataset.add_argument(
+    dataset_unique.add_argument(
         "--repair-steps",
         type=int,
-        default=0,
-        help="Attempts to locally repair regions when non-unique (default: 0).",
+        default=None,
+        help="Attempts to locally repair regions when non-unique.",
+    )
+    dataset_unique.add_argument(
+        "--block-steps",
+        type=int,
+        default=None,
+        help="Attempts to add blocked cells to eliminate alternative solutions.",
+    )
+
+    dataset_debug = generate_dataset.add_argument_group("Output")
+    dataset_debug.add_argument(
+        "--progress-every",
+        type=int,
+        default=None,
+        help="Print a progress line every N candidates.",
     )
 
     import_samimsu = subparsers.add_parser(

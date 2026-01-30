@@ -36,6 +36,18 @@ def test_generate_puzzle_payload_fast_unique_is_parseable() -> None:
     assert result.ok, result.reason
 
 
+def test_generate_puzzle_payload_block_steps() -> None:
+    payload, solution = generate_puzzle_payload(
+        n=6,
+        seed=5,
+        ensure_unique=False,
+        block_steps=2,
+    )
+    puzzle = parse_puzzle_dict(payload)
+    result = validate_solution(puzzle, solution)
+    assert result.ok, result.reason
+
+
 def test_generated_unique_n13() -> None:
     import os
 

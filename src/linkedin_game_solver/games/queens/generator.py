@@ -5,6 +5,7 @@ from __future__ import annotations
 import random
 from collections.abc import Iterable
 from dataclasses import dataclass
+from time import perf_counter
 
 from .parser import Cell, Grid, QueensPuzzle, QueensSolution, parse_puzzle_dict
 from .solver_dlx import count_solutions_dlx, find_two_solutions_dlx
@@ -104,6 +105,10 @@ def generate_regions_from_solution(
     region_sizes: dict[int, int] = {}
     region_rows: dict[int, set[int]] = {}
     region_cols: dict[int, set[int]] = {}
+    region_min_row: dict[int, int] = {}
+    region_max_row: dict[int, int] = {}
+    region_min_col: dict[int, int] = {}
+    region_max_col: dict[int, int] = {}
     region_seed: dict[int, Cell] = {}
     last_step: dict[int, tuple[int, int] | None] = {}
     last_cell: dict[int, Cell] = {}
@@ -114,6 +119,10 @@ def generate_regions_from_solution(
         region_sizes[region_id] = 1
         region_rows[region_id] = {r}
         region_cols[region_id] = {c}
+        region_min_row[region_id] = r
+        region_max_row[region_id] = r
+        region_min_col[region_id] = c
+        region_max_col[region_id] = c
         region_seed[region_id] = (r, c)
         last_step[region_id] = None
         last_cell[region_id] = (r, c)
@@ -135,6 +144,10 @@ def generate_regions_from_solution(
             frontiers[best_region].update(_neighbors4(n, r, c))
             region_rows[best_region].add(r)
             region_cols[best_region].add(c)
+            region_min_row[best_region] = min(region_min_row[best_region], r)
+            region_max_row[best_region] = max(region_max_row[best_region], r)
+            region_min_col[best_region] = min(region_min_col[best_region], c)
+            region_max_col[best_region] = max(region_max_col[best_region], c)
             prev_r, prev_c = last_cell[best_region]
             last_step[best_region] = (r - prev_r, c - prev_c)
             last_cell[best_region] = (r, c)
@@ -163,14 +176,28 @@ def generate_regions_from_solution(
             seed_r, seed_c = region_seed[region_id]
             rows = region_rows[region_id]
             cols = region_cols[region_id]
-            candidates.sort(
-                key=lambda cell: (
-                    abs(cell[0] - seed_r) + abs(cell[1] - seed_c),
-                    len(rows | {cell[0]}) + len(cols | {cell[1]}),
-                    cell[0],
-                    cell[1],
+            min_r = region_min_row[region_id]
+            max_r = region_max_row[region_id]
+            min_c = region_min_col[region_id]
+            max_c = region_max_col[region_id]
+
+            def constrained_key(cell: Cell) -> tuple[int, int, int, int, int, int]:
+                r, c = cell
+                row_count = len(rows) + (0 if r in rows else 1)
+                col_count = len(cols) + (0 if c in cols else 1)
+                row_span = max(max_r, r) - min(min_r, r) + 1
+                col_span = max(max_c, c) - min(min_c, c) + 1
+                distance = abs(r - seed_r) + abs(c - seed_c)
+                return (
+                    row_count * col_count,
+                    row_span + col_span,
+                    distance,
+                    row_count + col_count,
+                    r,
+                    c,
                 )
-            )
+
+            candidates.sort(key=constrained_key)
 
         r, c = candidates[0]
 
@@ -180,6 +207,10 @@ def generate_regions_from_solution(
         frontiers[region_id].update(_neighbors4(n, r, c))
         region_rows[region_id].add(r)
         region_cols[region_id].add(c)
+        region_min_row[region_id] = min(region_min_row[region_id], r)
+        region_max_row[region_id] = max(region_max_row[region_id], r)
+        region_min_col[region_id] = min(region_min_col[region_id], c)
+        region_max_col[region_id] = max(region_max_col[region_id], c)
         prev_r, prev_c = last_cell[region_id]
         last_step[region_id] = (r - prev_r, c - prev_c)
         last_cell[region_id] = (r, c)
@@ -201,6 +232,31 @@ def _generate_payload_once(
         "givens": {"queens": [], "blocked": []},
     }
     return payload, solution
+
+
+def _copy_payload(payload: dict) -> dict:
+    copy_payload = dict(payload)
+    copy_payload["regions"] = [row[:] for row in payload["regions"]]
+    givens = payload.get("givens", {})
+    copy_payload["givens"] = {
+        "queens": [cell[:] for cell in givens.get("queens", [])],
+        "blocked": [cell[:] for cell in givens.get("blocked", [])],
+    }
+    return copy_payload
+
+
+def _region_ambiguity_score(regions: Grid) -> int:
+    n = len(regions)
+    rows_by_region = [set() for _ in range(n)]
+    cols_by_region = [set() for _ in range(n)]
+    for r, row in enumerate(regions):
+        for c, region_id in enumerate(row):
+            rows_by_region[region_id].add(r)
+            cols_by_region[region_id].add(c)
+    score = 0
+    for region_id in range(n):
+        score += len(rows_by_region[region_id]) * len(cols_by_region[region_id])
+    return score
 
 
 def _resolve_region_mode(region_mode: str, attempt: int) -> str:
@@ -249,6 +305,40 @@ def _build_seed_map(regions: Grid, solution: QueensSolution) -> dict[int, Cell]:
     for r, c in solution.positions():
         seeds[regions[r][c]] = (r, c)
     return seeds
+
+
+def _blocked_set(payload: dict) -> set[Cell]:
+    givens = payload.get("givens", {})
+    blocked = givens.get("blocked", [])
+    return {tuple(cell) for cell in blocked}
+
+
+def _append_block(payload: dict, cell: Cell) -> None:
+    givens = payload.setdefault("givens", {})
+    blocked = givens.setdefault("blocked", [])
+    blocked.append([cell[0], cell[1]])
+
+
+def _try_block_solution_difference(
+    payload: dict,
+    solution_a: list[Cell],
+    solution_b: list[Cell],
+    seeds: dict[int, Cell],
+) -> Cell | None:
+    """Block a queen cell present in solution_b but not in solution_a."""
+
+    blocked = _blocked_set(payload)
+    set_a = set(solution_a)
+    candidates = [cell for cell in solution_b if cell not in set_a and cell not in blocked]
+    random.shuffle(candidates)
+    for cell in candidates:
+        region_id = payload["regions"][cell[0]][cell[1]]
+        if seeds.get(region_id) == cell:
+            continue
+        if cell in solution_a:
+            continue
+        return cell
+    return None
 
 
 def _try_repair_regions(
@@ -375,6 +465,8 @@ def generate_puzzle_payload(
     fast_unique: bool = False,
     fast_unique_timelimit_s: float = 0.5,
     repair_steps: int = 0,
+    block_steps: int = 0,
+    global_time_limit_s: float | None = None,
 ) -> tuple[dict, QueensSolution]:
     """Generate a puzzle JSON payload plus its known-valid solution.
 
@@ -387,6 +479,9 @@ def generate_puzzle_payload(
     if max_attempts is not None and max_attempts <= 0:
         msg = "max_attempts must be positive"
         raise ValueError(msg)
+    if global_time_limit_s is not None and global_time_limit_s <= 0:
+        msg = "global_time_limit_s must be positive"
+        raise ValueError(msg)
 
     rng = random.Random(seed)
 
@@ -397,76 +492,156 @@ def generate_puzzle_payload(
         msg = f"unknown region_mode={region_mode!r}"
         raise ValueError(msg)
 
+    start_time = None if global_time_limit_s is None else perf_counter()
+
+    def _timed_out() -> bool:
+        if start_time is None:
+            return False
+        return (perf_counter() - start_time) >= global_time_limit_s
+
+    fallback_payload: dict | None = None
+    fallback_solution: QueensSolution | None = None
+    fallback_score: int | None = None
+
+    def _record_best_candidate(payload: dict, solution: QueensSolution) -> None:
+        nonlocal fallback_payload, fallback_solution, fallback_score
+        if global_time_limit_s is None:
+            return
+        score = _region_ambiguity_score(payload["regions"])
+        if fallback_score is None or score < fallback_score:
+            fallback_score = score
+            fallback_payload = _copy_payload(payload)
+            fallback_solution = solution
+
+    best_score = -1.0
+    best_payload: dict | None = None
+    best_solution: QueensSolution | None = None
+
     repair_attempts = 0
     repair_successes = 0
+    block_attempts = 0
+    block_successes = 0
+    fast_unique_pass = 0
+    full_unique_pass = 0
+
+    def _return_best_on_timeout() -> tuple[dict, QueensSolution] | None:
+        if not _timed_out():
+            return None
+        if best_payload is not None and best_solution is not None:
+            return best_payload, best_solution
+        if fallback_payload is not None and fallback_solution is not None:
+            return fallback_payload, fallback_solution
+        msg = f"Unable to generate a unique puzzle for n={n} before timeout ({global_time_limit_s:.2f}s)"
+        raise ValueError(msg)
+
+    def _attempt_repair_and_block(payload: dict, solution: QueensSolution, attempts_label: int) -> bool:
+        nonlocal repair_attempts, repair_successes, block_attempts, block_successes, full_unique_pass
+        if repair_steps <= 0 and block_steps <= 0:
+            return False
+
+        def _log_unique() -> None:
+            nonlocal full_unique_pass
+            full_unique_pass += 1
+            if progress_every:
+                print(
+                    f"[generator] unique found after {attempts_label} candidates "
+                    f"(repairs={repair_attempts}, blocks={block_attempts})"
+                )
+
+        def _is_unique_now() -> bool:
+            return _is_unique_payload(payload, time_limit_s)
+
+        def _fetch_solutions() -> list[list[Cell]]:
+            puzzle = parse_puzzle_dict(payload)
+            return find_two_solutions_dlx(puzzle, time_limit_s=time_limit_s)
+
+        if repair_steps > 0:
+            for _ in range(repair_steps):
+                if _timed_out():
+                    return False
+                repair_attempts += 1
+                solutions = _fetch_solutions()
+                if len(solutions) < 2:
+                    return _is_unique_now()
+                seeds = _build_seed_map(payload["regions"], solution)
+                repaired = _try_repair_regions_multi(payload["regions"], solutions[0], solutions[1], seeds)
+                if repaired is None:
+                    repaired = _try_repair_regions(payload["regions"], solutions[0], solutions[1], seeds)
+                if repaired is None:
+                    break
+                payload["regions"] = repaired
+                _record_best_candidate(payload, solution)
+                if _is_unique_now():
+                    repair_successes += 1
+                    _log_unique()
+                    return True
+
+        if block_steps > 0:
+            for _ in range(block_steps):
+                if _timed_out():
+                    return False
+                block_attempts += 1
+                solutions = _fetch_solutions()
+                if len(solutions) < 2:
+                    return _is_unique_now()
+                seeds = _build_seed_map(payload["regions"], solution)
+                cell = _try_block_solution_difference(payload, solutions[0], solutions[1], seeds)
+                if cell is None:
+                    break
+                _append_block(payload, cell)
+                _record_best_candidate(payload, solution)
+                if _is_unique_now():
+                    block_successes += 1
+                    _log_unique()
+                    return True
+
+        return False
 
     if selection_mode == "best":
         solver = get_solver(score_algo)
-        best_score = -1.0
-        best_payload: dict | None = None
-        best_solution: QueensSolution | None = None
 
         attempts = 0
         while max_attempts is None or attempts < max_attempts:
+            timeout_result = _return_best_on_timeout()
+            if timeout_result is not None:
+                return timeout_result
             for _ in range(candidates):
+                timeout_result = _return_best_on_timeout()
+                if timeout_result is not None:
+                    return timeout_result
                 attempt_seed = rng.randint(0, 10_000_000) if seed is None else seed + attempts
                 mode = _resolve_region_mode(region_mode, attempts)
                 payload, solution = _generate_payload_once(n, seed=attempt_seed, region_mode=mode)
+                _record_best_candidate(payload, solution)
                 attempts += 1
                 if progress_every and attempts % progress_every == 0:
                     print(
                         f"[generator] tried {attempts} candidates "
                         f"(mode=best, region={region_mode}, unique={ensure_unique}) "
-                        f"repairs={repair_attempts} repaired={repair_successes}"
+                        f"repairs={repair_attempts} repaired={repair_successes} "
+                        f"blocks={block_attempts} blocked={block_successes} "
+                        f"fast_unique_ok={fast_unique_pass} unique_found={full_unique_pass}"
                     )
 
                 if ensure_unique:
                     if fast_unique and not _is_unique_payload(payload, fast_unique_timelimit_s):
-                        if repair_steps > 0:
-                            puzzle = parse_puzzle_dict(payload)
-                            solutions = find_two_solutions_dlx(puzzle, time_limit_s=time_limit_s)
-                            if len(solutions) >= 2:
-                                seeds = _build_seed_map(payload["regions"], solution)
-                                for _ in range(repair_steps):
-                                    repair_attempts += 1
-                                    repaired = _try_repair_regions_multi(
-                                        payload["regions"], solutions[0], solutions[1], seeds
-                                    )
-                                    if repaired is None:
-                                        repaired = _try_repair_regions(
-                                            payload["regions"], solutions[0], solutions[1], seeds
-                                        )
-                                    if repaired is None:
-                                        break
-                                    payload["regions"] = repaired
-                                    if _is_unique_payload(payload, time_limit_s):
-                                        repair_successes += 1
-                                        return payload, solution
+                        if _attempt_repair_and_block(payload, solution, attempts):
+                            return payload, solution
                         continue
+                    if fast_unique:
+                        fast_unique_pass += 1
                     if not _is_unique_payload(payload, time_limit_s):
-                        if repair_steps > 0:
-                            puzzle = parse_puzzle_dict(payload)
-                            solutions = find_two_solutions_dlx(puzzle, time_limit_s=time_limit_s)
-                            if len(solutions) >= 2:
-                                seeds = _build_seed_map(payload["regions"], solution)
-                                for _ in range(repair_steps):
-                                    repair_attempts += 1
-                                    repaired = _try_repair_regions_multi(
-                                        payload["regions"], solutions[0], solutions[1], seeds
-                                    )
-                                    if repaired is None:
-                                        repaired = _try_repair_regions(
-                                            payload["regions"], solutions[0], solutions[1], seeds
-                                        )
-                                    if repaired is None:
-                                        break
-                                    payload["regions"] = repaired
-                                    if _is_unique_payload(payload, time_limit_s):
-                                        repair_successes += 1
-                                        return payload, solution
-                            continue
+                        if _attempt_repair_and_block(payload, solution, attempts):
+                            return payload, solution
                         continue
 
+                if ensure_unique:
+                    full_unique_pass += 1
+                    if progress_every:
+                        print(
+                            f"[generator] unique found after {attempts} candidates "
+                            f"(repairs={repair_attempts}, blocks={block_attempts})"
+                        )
                 puzzle = parse_puzzle_dict(payload)
                 result = solver(puzzle, time_limit_s=time_limit_s)
                 score = float(result.metrics.nodes) + float(result.metrics.backtracks)
@@ -487,54 +662,39 @@ def generate_puzzle_payload(
 
     attempt = 0
     while max_attempts is None or attempt < max_attempts:
+        timeout_result = _return_best_on_timeout()
+        if timeout_result is not None:
+            return timeout_result
         attempt_seed = rng.randint(0, 10_000_000) if seed is None else seed + attempt
         mode = _resolve_region_mode(region_mode, attempt)
         payload, solution = _generate_payload_once(n, seed=attempt_seed, region_mode=mode)
+        _record_best_candidate(payload, solution)
         attempt += 1
         if progress_every and attempt % progress_every == 0:
             print(
                 f"[generator] tried {attempt} candidates "
                 f"(mode=first, region={region_mode}, unique={ensure_unique}) "
-                f"repairs={repair_attempts} repaired={repair_successes}"
+                f"repairs={repair_attempts} repaired={repair_successes} "
+                f"blocks={block_attempts} blocked={block_successes} "
+                f"fast_unique_ok={fast_unique_pass} unique_found={full_unique_pass}"
             )
         if ensure_unique:
             if fast_unique and not _is_unique_payload(payload, fast_unique_timelimit_s):
-                if repair_steps > 0:
-                    puzzle = parse_puzzle_dict(payload)
-                    solutions = find_two_solutions_dlx(puzzle, time_limit_s=time_limit_s)
-                    if len(solutions) >= 2:
-                        seeds = _build_seed_map(payload["regions"], solution)
-                        for _ in range(repair_steps):
-                            repair_attempts += 1
-                            repaired = _try_repair_regions_multi(payload["regions"], solutions[0], solutions[1], seeds)
-                            if repaired is None:
-                                repaired = _try_repair_regions(payload["regions"], solutions[0], solutions[1], seeds)
-                            if repaired is None:
-                                break
-                            payload["regions"] = repaired
-                            if _is_unique_payload(payload, time_limit_s):
-                                repair_successes += 1
-                                return payload, solution
+                if _attempt_repair_and_block(payload, solution, attempt):
+                    return payload, solution
                 continue
+            if fast_unique:
+                fast_unique_pass += 1
             if not _is_unique_payload(payload, time_limit_s):
-                if repair_steps > 0:
-                    puzzle = parse_puzzle_dict(payload)
-                    solutions = find_two_solutions_dlx(puzzle, time_limit_s=time_limit_s)
-                    if len(solutions) >= 2:
-                        seeds = _build_seed_map(payload["regions"], solution)
-                        for _ in range(repair_steps):
-                            repair_attempts += 1
-                            repaired = _try_repair_regions_multi(payload["regions"], solutions[0], solutions[1], seeds)
-                            if repaired is None:
-                                repaired = _try_repair_regions(payload["regions"], solutions[0], solutions[1], seeds)
-                            if repaired is None:
-                                break
-                            payload["regions"] = repaired
-                            if _is_unique_payload(payload, time_limit_s):
-                                repair_successes += 1
-                                return payload, solution
-                    continue
+                if _attempt_repair_and_block(payload, solution, attempt):
+                    return payload, solution
                 continue
+            full_unique_pass += 1
+            if progress_every:
+                print(
+                    f"[generator] unique found after {attempt} candidates "
+                    f"(repairs={repair_attempts}, blocks={block_attempts})"
+                )
             return payload, solution
         return payload, solution
 
@@ -550,6 +710,7 @@ def generate_puzzle(
     time_limit_s: float | None = None,
     fast_unique: bool = False,
     fast_unique_timelimit_s: float = 0.5,
+    global_time_limit_s: float | None = None,
 ) -> GeneratedPuzzle:
     """Generate a parsed puzzle along with its known-valid solution."""
 
@@ -561,6 +722,7 @@ def generate_puzzle(
         time_limit_s=time_limit_s,
         fast_unique=fast_unique,
         fast_unique_timelimit_s=fast_unique_timelimit_s,
+        global_time_limit_s=global_time_limit_s,
     )
     puzzle = parse_puzzle_dict(payload)
     validation = validate_solution(puzzle, solution)
