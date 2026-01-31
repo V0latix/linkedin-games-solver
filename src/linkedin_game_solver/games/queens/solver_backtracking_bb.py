@@ -102,7 +102,11 @@ def _initialize_state(
     return state, domains, givens_by_row, neighbors
 
 
-def solve_backtracking_bb(puzzle: QueensPuzzle, time_limit_s: float | None = None) -> SolveResult:
+def _solve_backtracking_bb(
+    puzzle: QueensPuzzle,
+    time_limit_s: float | None,
+    use_lcv: bool,
+) -> SolveResult:
     """Backtracking with MRV ordering + forward-checking style pruning."""
 
     timer = Timer()
@@ -239,7 +243,7 @@ def solve_backtracking_bb(puzzle: QueensPuzzle, time_limit_s: float | None = Non
             metrics.backtracks += 1
             return False
 
-        if len(options) > 1 and row not in givens_by_row:
+        if use_lcv and len(options) > 1 and row not in givens_by_row:
             options = sorted(options, key=lambda c: lcv_score(row, c))
 
         for col in options:
@@ -288,3 +292,15 @@ def solve_backtracking_bb(puzzle: QueensPuzzle, time_limit_s: float | None = Non
         )
 
     return SolveResult(solved=True, solution=solution, metrics=metrics, error=None)
+
+
+def solve_backtracking_bb(puzzle: QueensPuzzle, time_limit_s: float | None = None) -> SolveResult:
+    """Backtracking with MRV + pruning + LCV ordering."""
+
+    return _solve_backtracking_bb(puzzle, time_limit_s=time_limit_s, use_lcv=True)
+
+
+def solve_backtracking_bb_nolcv(puzzle: QueensPuzzle, time_limit_s: float | None = None) -> SolveResult:
+    """Backtracking with MRV + pruning, without LCV ordering."""
+
+    return _solve_backtracking_bb(puzzle, time_limit_s=time_limit_s, use_lcv=False)
