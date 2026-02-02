@@ -1,5 +1,6 @@
 """Zip game module."""
 
+from .generator import generate_zip_puzzle_payload
 from .model import ZipPuzzle, ZipSolution
 from .parser import parse_puzzle_dict, parse_puzzle_file
 from .renderer import render_puzzle, render_solution
@@ -10,6 +11,7 @@ from .validator import validate_solution
 __all__ = [
     "ZipPuzzle",
     "ZipSolution",
+    "generate_zip_puzzle_payload",
     "parse_puzzle_dict",
     "parse_puzzle_file",
     "render_puzzle",
