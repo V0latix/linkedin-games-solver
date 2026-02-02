@@ -7,7 +7,13 @@ import json
 import random
 from pathlib import Path
 
-from linkedin_game_solver.benchmarks.queens import available_algorithms, run_and_report
+from linkedin_game_solver.benchmarks.queens import (
+    available_algorithms as queens_available_algorithms,
+)
+from linkedin_game_solver.benchmarks.queens import (
+    run_and_report as run_and_report_queens,
+)
+from linkedin_game_solver.benchmarks.zip import run_and_report as run_and_report_zip
 from linkedin_game_solver.datasets.exporter import export_dataset
 from linkedin_game_solver.datasets.normalize import normalize_dataset
 from linkedin_game_solver.datasets.organize import organize_by_size
@@ -16,12 +22,30 @@ from linkedin_game_solver.games.queens.generator import generate_puzzle_payload
 from linkedin_game_solver.games.queens.importers.samimsu import import_samimsu_dataset
 from linkedin_game_solver.games.queens.parser import parse_puzzle_dict, parse_puzzle_file
 from linkedin_game_solver.games.queens.renderer import render_puzzle, render_solution
-from linkedin_game_solver.games.queens.solvers import get_solver
+from linkedin_game_solver.games.queens.solvers import get_solver as get_queens_solver
 from linkedin_game_solver.games.queens.validator import validate_solution
+from linkedin_game_solver.games.zip.parser import parse_puzzle_file as parse_zip_puzzle_file
+from linkedin_game_solver.games.zip.renderer import (
+    render_puzzle as render_zip_puzzle,
+)
+from linkedin_game_solver.games.zip.renderer import (
+    render_solution as render_zip_solution,
+)
+from linkedin_game_solver.games.zip.solvers import get_solver as get_zip_solver
+from linkedin_game_solver.games.zip.validator import validate_solution as validate_zip_solution
 
 
 def _resolve_queens_solver(algo: str):
-    return get_solver(algo)
+    return get_queens_solver(algo)
+
+
+def _resolve_solver(game: str, algo: str):
+    if game == "queens":
+        return get_queens_solver(algo)
+    if game == "zip":
+        return get_zip_solver(algo)
+    msg = f"Unknown game {game!r}."
+    raise ValueError(msg)
 
 
 def _profile_defaults(mode: str) -> dict[str, object]:
@@ -133,22 +157,32 @@ def _apply_profile(args: argparse.Namespace, mode: str) -> None:
 
 
 def _handle_solve(args: argparse.Namespace) -> int:
-    if args.game != "queens":
-        msg = "solve currently supports only --game queens."
+    if args.game == "queens":
+        puzzle = parse_puzzle_file(args.input)
+        solver = _resolve_solver(args.game, args.algo)
+        result = solver(puzzle, time_limit_s=args.timelimit)
+        validation = validate_solution(puzzle, result.solution) if result.solution else None
+        render_puzzle_fn = render_puzzle
+        render_solution_fn = render_solution
+    elif args.game == "zip":
+        puzzle = parse_zip_puzzle_file(args.input)
+        solver = _resolve_solver(args.game, args.algo)
+        result = solver(puzzle, time_limit_s=args.timelimit)
+        validation = validate_zip_solution(puzzle, result.solution) if result.solution else None
+        render_puzzle_fn = render_zip_puzzle
+        render_solution_fn = render_zip_solution
+    else:
+        msg = "solve supports only --game queens or zip."
         raise ValueError(msg)
-
-    puzzle = parse_puzzle_file(args.input)
-    solver = _resolve_queens_solver(args.algo)
-    result = solver(puzzle, time_limit_s=args.timelimit)
 
     if not result.solved or result.solution is None:
         reason = result.error or "Solver failed without an explicit error."
         print(f"Solver failed: {reason}")
         return 2
 
-    validation = validate_solution(puzzle, result.solution)
-    if not validation.ok:
-        print(f"Solver produced an invalid solution: {validation.reason}")
+    if validation is None or not validation.ok:
+        reason = "missing validation result" if validation is None else validation.reason
+        print(f"Solver produced an invalid solution: {reason}")
         return 3
 
     print(
@@ -160,20 +194,23 @@ def _handle_solve(args: argparse.Namespace) -> int:
 
     if args.render:
         print()
-        print(render_puzzle(puzzle).text)
+        print(render_puzzle_fn(puzzle).text)
         print()
-        print(render_solution(puzzle, result.solution).text)
+        print(render_solution_fn(puzzle, result.solution).text)
 
     return 0
 
 
 def _handle_render(args: argparse.Namespace) -> int:
-    if args.game != "queens":
-        msg = "render currently supports only --game queens."
+    if args.game == "queens":
+        puzzle = parse_puzzle_file(args.input)
+        print(render_puzzle(puzzle).text)
+    elif args.game == "zip":
+        puzzle = parse_zip_puzzle_file(args.input)
+        print(render_zip_puzzle(puzzle).text)
+    else:
+        msg = "render supports only --game queens or zip."
         raise ValueError(msg)
-
-    puzzle = parse_puzzle_file(args.input)
-    print(render_puzzle(puzzle).text)
     return 0
 
 
@@ -248,26 +285,42 @@ def _handle_generate_solve(args: argparse.Namespace) -> int:
 
 
 def _handle_bench(args: argparse.Namespace) -> int:
-    if args.game != "queens":
-        msg = "bench currently supports only --game queens."
+    if args.game not in {"queens", "zip"}:
+        msg = "bench supports only --game queens or zip."
         raise ValueError(msg)
 
     if args.timelimit is not None and args.timelimit <= 0:
         msg = "Time limit must be a positive number of seconds."
         raise ValueError(msg)
 
-    rows, _report = run_and_report(
-        dataset=args.dataset,
-        algo_csv=args.algo,
-        report_path=args.report,
-        limit=args.limit,
-        recursive=args.recursive,
-        top_k=args.top_k,
-        time_limit_s=args.timelimit,
-        runs_out=args.runs_out,
-    )
+    report_path = args.report
+    if report_path is None:
+        report_path = Path("reports/queens_bench.md") if args.game == "queens" else Path("reports/zip_bench.md")
+
+    if args.game == "queens":
+        rows, _report = run_and_report_queens(
+            dataset=args.dataset,
+            algo_csv=args.algo,
+            report_path=report_path,
+            limit=args.limit,
+            recursive=args.recursive,
+            top_k=args.top_k,
+            time_limit_s=args.timelimit,
+            runs_out=args.runs_out,
+        )
+    else:
+        rows, _report = run_and_report_zip(
+            dataset=args.dataset,
+            algo_csv=args.algo,
+            report_path=report_path,
+            limit=args.limit,
+            recursive=args.recursive,
+            top_k=args.top_k,
+            time_limit_s=args.timelimit,
+            runs_out=args.runs_out,
+        )
     print(f"Benchmarked {len(rows)} runs across dataset: {args.dataset}")
-    print(f"Report written to: {args.report}")
+    print(f"Report written to: {report_path}")
     return 0
 
 
@@ -507,7 +560,7 @@ def build_parser() -> argparse.ArgumentParser:
     bench.add_argument(
         "--report",
         type=Path,
-        default=Path("reports/queens_bench.md"),
+        default=None,
         help="Path to the Markdown report to write.",
     )
     bench.add_argument(
@@ -550,7 +603,7 @@ def build_parser() -> argparse.ArgumentParser:
     solve_core.add_argument(
         "--algo",
         default="dlx",
-        help="Solver to verify: " + ", ".join(available_algorithms()) + ".",
+        help="Solver to verify: " + ", ".join(queens_available_algorithms()) + ".",
     )
     solve_core.add_argument("--seed", type=int, default=None, help="Random seed for reproducibility.")
 
@@ -682,7 +735,7 @@ def build_parser() -> argparse.ArgumentParser:
     dataset_core.add_argument(
         "--algo",
         default="heuristic_lcv",
-        help="Solver to validate puzzles: " + ", ".join(available_algorithms()) + ".",
+        help="Solver to validate puzzles: " + ", ".join(queens_available_algorithms()) + ".",
     )
     dataset_core.add_argument(
         "--outdir",
