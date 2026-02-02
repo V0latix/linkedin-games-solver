@@ -40,7 +40,10 @@ src/linkedin_game_solver/games/zip/generator.py
 src/linkedin_game_solver/games/zip/model.py
 src/linkedin_game_solver/games/zip/parser.py
 src/linkedin_game_solver/games/zip/renderer.py
+src/linkedin_game_solver/games/zip/solver_articulation.py
 src/linkedin_game_solver/games/zip/solver_baseline.py
+src/linkedin_game_solver/games/zip/solver_counting.py
+src/linkedin_game_solver/games/zip/solver_forced.py
 src/linkedin_game_solver/games/zip/solver_heuristic.py
 src/linkedin_game_solver/games/zip/solvers.py
 src/linkedin_game_solver/games/zip/validator.py
@@ -64,7 +67,9 @@ tests/test_report_utils.py
 tests/test_unique_solution.py
 tests/test_zip_bench.py
 tests/test_zip_cli_generate.py
+tests/test_zip_counting.py
 tests/test_zip_generator.py
+tests/test_zip_new_solvers.py
 tests/test_zip_parser.py
 tests/test_zip_renderer.py
 tests/test_zip_solvers.py
