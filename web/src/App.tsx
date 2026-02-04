@@ -565,6 +565,7 @@ export default function App() {
     startKey: null as CellKey | null,
     lastKey: null as CellKey | null,
     markingStarted: false,
+    didMark: false,
   });
 
   const zipDrag = useRef({
@@ -715,13 +716,14 @@ export default function App() {
     const key = cellKey(r, c);
     if (queensPuzzle.blocked.has(key) || queensPuzzle.givensQueens.has(key)) return;
     event.preventDefault();
-    markQueensCell(key, queensPuzzle);
+    const didMark = markQueensCell(key, queensPuzzle);
     queensDrag.current = {
       active: true,
       moved: false,
       startKey: key,
       lastKey: key,
-      markingStarted: false,
+      markingStarted: didMark,
+      didMark,
     };
     target.setPointerCapture(event.pointerId);
   }
@@ -739,19 +741,28 @@ export default function App() {
     queensDrag.current.lastKey = key;
 
     if (!queensDrag.current.markingStarted && queensDrag.current.startKey) {
-      markQueensCell(queensDrag.current.startKey, queensPuzzle);
+      const marked = markQueensCell(queensDrag.current.startKey, queensPuzzle);
       queensDrag.current.markingStarted = true;
+      queensDrag.current.didMark = queensDrag.current.didMark || marked;
     }
-    markQueensCell(key, queensPuzzle);
+    const marked = markQueensCell(key, queensPuzzle);
+    queensDrag.current.didMark = queensDrag.current.didMark || marked;
   }
 
   function handleQueensPointerUp(event: React.PointerEvent) {
     if (!queensPuzzle || !queensDrag.current.active) return;
-    if (!queensDrag.current.moved && queensDrag.current.startKey) {
+    if (!queensDrag.current.moved && queensDrag.current.startKey && !queensDrag.current.didMark) {
       cycleQueensCell(queensDrag.current.startKey, queensPuzzle);
     }
     (event.target as HTMLElement).releasePointerCapture(event.pointerId);
-    queensDrag.current = { active: false, moved: false, startKey: null, lastKey: null, markingStarted: false };
+    queensDrag.current = {
+      active: false,
+      moved: false,
+      startKey: null,
+      lastKey: null,
+      markingStarted: false,
+      didMark: false,
+    };
   }
 
   function handleQueensHint() {
