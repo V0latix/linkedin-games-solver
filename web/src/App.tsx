@@ -35,11 +35,6 @@ type ZipPuzzleNormalized = ZipPuzzle & {
   neighbors: Map<CellKey, CellKey[]>;
 };
 
-
-const ZIP_COLOR = 'var(--zip-path)';
-const ZIP_STROKE = 'var(--zip-stroke)';
-const ZIP_NODE = 'var(--zip-node)';
-
 type StatsSnapshot = {
   queensCompleted: number;
   zipCompleted: number;
@@ -90,7 +85,7 @@ function saveStats(stats: StatsSnapshot) {
   try {
     localStorage.setItem(STATS_KEY, JSON.stringify(stats));
   } catch {
-    // Ignore write errors.
+    // ignore
   }
 }
 
@@ -533,49 +528,49 @@ function zipPathStyle(segments: Set<string>) {
   const positions: string[] = [];
 
   if (segments.has('n')) {
-    gradients.push(`linear-gradient(${ZIP_COLOR}, ${ZIP_COLOR})`);
-    sizes.push(`${ZIP_STROKE} 50%`);
+    gradients.push(`linear-gradient(var(--zip-path), var(--zip-path))`);
+    sizes.push(`var(--zip-stroke) 50%`);
     positions.push('center top');
   }
   if (segments.has('s')) {
-    gradients.push(`linear-gradient(${ZIP_COLOR}, ${ZIP_COLOR})`);
-    sizes.push(`${ZIP_STROKE} 50%`);
+    gradients.push(`linear-gradient(var(--zip-path), var(--zip-path))`);
+    sizes.push(`var(--zip-stroke) 50%`);
     positions.push('center bottom');
   }
   if (segments.has('w')) {
-    gradients.push(`linear-gradient(${ZIP_COLOR}, ${ZIP_COLOR})`);
-    sizes.push(`50% ${ZIP_STROKE}`);
+    gradients.push(`linear-gradient(var(--zip-path), var(--zip-path))`);
+    sizes.push(`50% var(--zip-stroke)`);
     positions.push('left center');
   }
   if (segments.has('e')) {
-    gradients.push(`linear-gradient(${ZIP_COLOR}, ${ZIP_COLOR})`);
-    sizes.push(`50% ${ZIP_STROKE}`);
+    gradients.push(`linear-gradient(var(--zip-path), var(--zip-path))`);
+    sizes.push(`50% var(--zip-stroke)`);
     positions.push('right center');
   }
 
   if (segments.has('n') && !segments.has('s')) {
-    gradients.push(`radial-gradient(circle, ${ZIP_COLOR} 0 60%, transparent 61%)`);
-    sizes.push(`${ZIP_STROKE} ${ZIP_STROKE}`);
+    gradients.push(`radial-gradient(circle, var(--zip-path) 0 60%, transparent 61%)`);
+    sizes.push(`var(--zip-stroke) var(--zip-stroke)`);
     positions.push('center top');
   }
   if (segments.has('s') && !segments.has('n')) {
-    gradients.push(`radial-gradient(circle, ${ZIP_COLOR} 0 60%, transparent 61%)`);
-    sizes.push(`${ZIP_STROKE} ${ZIP_STROKE}`);
+    gradients.push(`radial-gradient(circle, var(--zip-path) 0 60%, transparent 61%)`);
+    sizes.push(`var(--zip-stroke) var(--zip-stroke)`);
     positions.push('center bottom');
   }
   if (segments.has('w') && !segments.has('e')) {
-    gradients.push(`radial-gradient(circle, ${ZIP_COLOR} 0 60%, transparent 61%)`);
-    sizes.push(`${ZIP_STROKE} ${ZIP_STROKE}`);
+    gradients.push(`radial-gradient(circle, var(--zip-path) 0 60%, transparent 61%)`);
+    sizes.push(`var(--zip-stroke) var(--zip-stroke)`);
     positions.push('left center');
   }
   if (segments.has('e') && !segments.has('w')) {
-    gradients.push(`radial-gradient(circle, ${ZIP_COLOR} 0 60%, transparent 61%)`);
-    sizes.push(`${ZIP_STROKE} ${ZIP_STROKE}`);
+    gradients.push(`radial-gradient(circle, var(--zip-path) 0 60%, transparent 61%)`);
+    sizes.push(`var(--zip-stroke) var(--zip-stroke)`);
     positions.push('right center');
   }
 
-  gradients.push(`radial-gradient(circle, ${ZIP_COLOR} 0 60%, transparent 61%)`);
-  sizes.push(`${ZIP_NODE} ${ZIP_NODE}`);
+  gradients.push(`radial-gradient(circle, var(--zip-path) 0 60%, transparent 61%)`);
+  sizes.push(`var(--zip-node) var(--zip-node)`);
   positions.push('center center');
 
   return {
@@ -1109,9 +1104,7 @@ export default function App() {
   return (
     <div className="app">
       <header className="topbar">
-        <div className="brand">
-          <span className="brand-dot" />
-        </div>
+        <div className="brand-dot" aria-hidden="true" />
         <div className="topbar-stats">
           <div className="topbar-chip">
             <span className="topbar-chip-label">Queens terminés</span>
