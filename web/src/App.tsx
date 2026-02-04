@@ -715,6 +715,7 @@ export default function App() {
     const key = cellKey(r, c);
     if (queensPuzzle.blocked.has(key) || queensPuzzle.givensQueens.has(key)) return;
     event.preventDefault();
+    markQueensCell(key, queensPuzzle);
     queensDrag.current = {
       active: true,
       moved: false,

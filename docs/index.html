@@ -4,79 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>LinkedIn Games - Puzzles</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" crossorigin src="./assets/index-CPZNqY5b.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Phgerf0D.css">
   </head>
   <body>
-    <header class="topbar">
-      <div class="brand">
-        <span class="brand-dot"></span>
-        <div>
-          <div class="brand-title">LinkedIn Games</div>
-          <div class="brand-subtitle">Puzzles jouables - Queens &amp; Zip</div>
-        </div>
-      </div>
-      <nav class="tabs" aria-label="Navigation puzzles">
-        <button class="tab active" data-view="queens" type="button">Queens</button>
-        <button class="tab" data-view="zip" type="button">Zip</button>
-      </nav>
-    </header>
-
-    <main class="page">
-      <section class="view active" id="view-queens" aria-labelledby="queens-title">
-        <div class="view-header">
-          <h1 id="queens-title">Queens</h1>
-          <p>Place une reine par ligne, colonne et région, sans contact adjacent.</p>
-        </div>
-
-        <div class="layout">
-          <section class="board" aria-label="Grille Queens">
-            <div class="grid" id="queens-board"></div>
-          </section>
-          <aside class="panel side-panel">
-            <div class="panel-actions vertical">
-              <button type="button" class="secondary" id="queens-next" disabled>Puzzle suivant</button>
-              <button type="button" class="secondary" id="queens-reset" disabled>Réinitialiser</button>
-              <button type="button" class="secondary" id="queens-hint" disabled>Hint</button>
-              <button type="button" class="primary" id="queens-verify" disabled>Vérifier</button>
-            </div>
-            <div class="panel-status" id="queens-status">Chargement…</div>
-            <div class="panel-note">
-              Clique sur une case pour placer une croix, puis reclique pour poser une reine.
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="view" id="view-zip" aria-labelledby="zip-title">
-        <div class="view-header">
-          <h1 id="zip-title">Zip</h1>
-          <p>Relie toutes les cases en respectant les murs et les numéros.</p>
-        </div>
-
-        <div class="layout">
-          <section class="board" aria-label="Grille Zip">
-            <div class="zip-grid" id="zip-board"></div>
-          </section>
-          <aside class="panel side-panel">
-            <div class="panel-actions vertical">
-              <button type="button" class="secondary" id="zip-next" disabled>Puzzle suivant</button>
-              <button type="button" class="secondary" id="zip-reset" disabled>Réinitialiser</button>
-              <button type="button" class="secondary" id="zip-hint" disabled>Hint</button>
-              <button type="button" class="primary" id="zip-verify" disabled>Vérifier</button>
-            </div>
-            <div class="panel-status" id="zip-status">Chargement…</div>
-            <div class="panel-note">
-              Clique et glisse pour tracer un chemin qui passe par tous les numéros.
-            </div>
-          </aside>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div>Projet statique hébergé sur GitHub Pages.</div>
-    </footer>
-
-    <script src="./app.js"></script>
+    <div id="root"></div>
   </body>
 </html>
