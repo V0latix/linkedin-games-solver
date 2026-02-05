@@ -1104,7 +1104,6 @@ export default function App() {
   return (
     <div className="app">
       <header className="topbar">
-        <div className="brand-dot" aria-hidden="true" />
         <div className="topbar-stats">
           <div className="topbar-chip">
             <span className="topbar-chip-label">Queens terminés</span>
