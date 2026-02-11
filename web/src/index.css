@@ -27,6 +27,13 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: 'Sora', system-ui, -apple-system, sans-serif;
@@ -142,6 +149,7 @@ body::before {
   grid-template-columns: minmax(0, 1fr) 280px;
   gap: 24px;
   align-items: start;
+  min-width: 0;
 }
 
 .panel {
@@ -271,23 +279,32 @@ button.secondary:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .grid {
-  width: 100%;
-  max-width: 520px;
+  width: min(100%, 520px);
   display: grid;
   gap: 0;
   border: 3px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
   overflow: hidden;
+  margin-inline: auto;
+  aspect-ratio: 1 / 1;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .cell {
   border: 1.5px solid rgba(4, 7, 16, 0.7);
   border-radius: 0;
   aspect-ratio: 1 / 1;
-  font-size: 24px;
+  min-width: 0;
+  min-height: 0;
+  font-size: clamp(18px, 4.5vw, 24px);
   font-weight: 700;
   color: #0b0f1a;
   cursor: pointer;
@@ -310,7 +327,7 @@ button.secondary:hover {
 
 .cell.queen {
   color: #0b0f1a;
-  font-size: 30px;
+  font-size: clamp(24px, 6vw, 30px);
 }
 
 .cell.mark {
@@ -324,19 +341,25 @@ button.secondary:hover {
 }
 
 .zip-grid {
-  width: 100%;
-  max-width: 520px;
+  width: min(100%, 520px);
   display: grid;
   gap: 0;
   border: 3px solid rgba(255, 255, 255, 0.18);
   border-radius: 24px;
   overflow: hidden;
   background: #ffffff;
+  margin-inline: auto;
+  aspect-ratio: 1 / 1;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .zip-cell {
   border: 1.5px solid #6f7a89;
   aspect-ratio: 1 / 1;
+  min-width: 0;
+  min-height: 0;
   background: #ffffff;
   display: inline-flex;
   align-items: center;
@@ -361,8 +384,8 @@ button.secondary:hover {
 }
 
 .zip-number {
-  width: 34px;
-  height: 34px;
+  width: clamp(22px, 8vw, 34px);
+  height: clamp(22px, 8vw, 34px);
   border-radius: 999px;
   background: #111111;
   color: #ffffff;
@@ -370,7 +393,7 @@ button.secondary:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
+  font-size: clamp(11px, 3vw, 15px);
 }
 
 .zip-number.active {
@@ -414,12 +437,71 @@ button.secondary:hover {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --zip-stroke: 18px;
+    --zip-node: 20px;
+  }
+
+  .topbar {
+    padding: 14px 16px;
+  }
+
+  .topbar-stats,
+  .tabs {
+    width: 100%;
+  }
+
+  .tabs {
+    justify-content: stretch;
+  }
+
+  .tab {
+    flex: 1;
+  }
+
   .page {
     margin-top: 20px;
+    padding: 0 14px 120px;
     padding-bottom: 120px;
   }
 
   .view-header h1 {
     font-size: 24px;
+  }
+
+  .layout {
+    gap: 16px;
+  }
+
+  .board {
+    min-height: 0;
+    padding: 10px;
+  }
+
+  .grid,
+  .zip-grid {
+    border-width: 2px;
+    border-radius: 14px;
+  }
+
+  .cell,
+  .zip-cell {
+    border-width: 1px;
+  }
+
+  .zip-cell.wall-top {
+    border-top-width: 3px;
+  }
+
+  .zip-cell.wall-right {
+    border-right-width: 3px;
+  }
+
+  .zip-cell.wall-bottom {
+    border-bottom-width: 3px;
+  }
+
+  .zip-cell.wall-left {
+    border-left-width: 3px;
   }
 }
